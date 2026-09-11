@@ -1,0 +1,3 @@
+interface:
+  display_name: "Designing Architecture"
+  short_description: "Pre-implementation architecture with TDD-ready plan"

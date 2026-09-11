@@ -20,4 +20,4 @@ A lesson earns a skill edit only when it would change a future decision. If a sc
 
 ## Where it fits
 
-`reflect` is a reach-for-it-anytime productivity standalone. It pairs with [automate-me](https://aihero.dev/skills-automate-me) for personal workflow rules and [writing-for-agents](https://aihero.dev/skills-writing-for-agents) for editing agent-facing documents. [ask-zac](https://aihero.dev/skills-ask-zac) routes across the full set.
+`reflect` is a reach-for-it-anytime productivity standalone. It pairs with [automate-me](https://aihero.dev/skills-automate-me) for personal workflow rules and [writing-for-agents](https://aihero.dev/skills-writing-for-agents) for editing agent-facing documents.

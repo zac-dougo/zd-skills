@@ -1,0 +1,5 @@
+interface:
+  display_name: "Design"
+  short_description: "Pre-implementation architecture plan"
+policy:
+  allow_implicit_invocation: false

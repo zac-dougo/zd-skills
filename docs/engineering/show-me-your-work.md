@@ -20,4 +20,4 @@ Use `decisions.tsv` for one effort or `.audit/<task-slug>.tsv` when several effo
 
 ## Where it fits
 
-`show-me-your-work` is a reach-for-it-anytime engineering standalone. It pairs with [swarm](https://aihero.dev/skills-swarm) and [implement](https://aihero.dev/skills-implement) when work spans agents or phases. [ask-zac](https://aihero.dev/skills-ask-zac) routes across the full set.
+`show-me-your-work` is a reach-for-it-anytime engineering standalone. Reach for it when work spans agents or phases and a reviewer will need the decision trail to trust the result.

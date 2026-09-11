@@ -1,0 +1,5 @@
+interface:
+  display_name: "Review"
+  short_description: "Four-pass quality gate over a diff or PR"
+policy:
+  allow_implicit_invocation: false

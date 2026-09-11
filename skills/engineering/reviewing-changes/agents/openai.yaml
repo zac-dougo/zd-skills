@@ -1,0 +1,3 @@
+interface:
+  display_name: "Reviewing Changes"
+  short_description: "Four-pass review: code, security, architecture, acceptance"

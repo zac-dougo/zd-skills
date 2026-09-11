@@ -22,7 +22,9 @@ Skip when the conversation is trivial, off-topic, or already covered by an exist
 
 ### 1. Locate the active transcript
 
-The parent finds its own transcript file before fanning out. The system prompt names the active workspace's `agent-transcripts/` directory; use that path. Do not search transcripts from unrelated workspaces.
+The parent finds its own transcript file before fanning out. Use your harness's transcript location for the active workspace (usually named in the system prompt or session settings); use that path. Do not search transcripts from unrelated workspaces. If your harness exposes no transcript files at all, skip to the digest fallback below.
+
+In harnesses that store JSONL transcripts under an `agent-transcripts/` directory:
 
 ```bash
 ls -t <agent-transcripts>/*.jsonl <agent-transcripts>/*/*.jsonl <agent-transcripts>/*/subagents/*.jsonl 2>/dev/null | head -10
@@ -30,23 +32,23 @@ ls -t <agent-transcripts>/*.jsonl <agent-transcripts>/*/*.jsonl <agent-transcrip
 
 Three transcript layouts: legacy flat (`<id>.jsonl`), current nested (`<id>/<id>.jsonl`), and subagent (`<parent>/subagents/<child>.jsonl`).
 
-For each candidate, read the first JSONL line and check that `message.content[0].text` contains the conversation's opening user prompt. Take the matching path. If no path resolves, write a tight digest of the session and pass that instead.
+For each candidate, open it and check it holds this conversation: for JSONL transcripts, the first line's `message.content[0].text` contains the conversation's opening user prompt. Take the matching path. If no path resolves, write a tight digest of the session and pass that instead.
 
 ### 2. Spawn three reviewers in parallel
 
-One message, three background subagent calls, with an explicit model on each. Reviewers may need project integrations for context lookups. The prompt forbids file writes; the parent applies edits.
+One message, three background subagent calls, with an explicit model on each. If your harness cannot run subagents, apply the three reviewer templates yourself inline instead. Reviewers may need project integrations for context lookups. The prompt forbids file writes; the parent applies edits.
 
 | Lens | `model` | Prompt template |
 |---|---|---|
-| Judgment | your configured reflect-judgment model (default `claude-fable-5-thinking-max`) | `references/judgment-reviewer.md` |
-| Tooling | your configured reflect-tooling model (default `gpt-5.6-sol-max`) | `references/tooling-reviewer.md` |
-| Divergent | your configured reflect-judgment model (default `claude-fable-5-thinking-max`) | `references/divergent-reviewer.md` |
+| Judgment | your configured judgment model, or the strongest reasoning model your harness offers | `references/judgment-reviewer.md` |
+| Tooling | your configured tooling model, or the strongest reasoning model your harness offers | `references/tooling-reviewer.md` |
+| Divergent | your configured judgment model, or the strongest reasoning model your harness offers | `references/divergent-reviewer.md` |
 
 Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in their subagent response.
 
 ### 3. Synthesize
 
-One background subagent call using the configured reflection model. The synthesizer's quality check includes spot-verifying citations, which may require project integrations. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
+One background subagent call using the configured reflection model, or run the synthesizer template inline if your harness has no subagents. The synthesizer's quality check includes spot-verifying citations, which may require project integrations. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
 
 ### 4. Structural enforcement check
 

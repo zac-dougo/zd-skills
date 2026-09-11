@@ -20,4 +20,4 @@ Ask what the reader needs to know or do. State that directly, use the project's 
 
 ## Where it fits
 
-`unslop` is a model-invoked productivity reference that other writing skills can call. It pairs with [writing-for-agents](https://aihero.dev/skills-writing-for-agents) and [technical-writing](https://aihero.dev/skills-technical-writing). [ask-zac](https://aihero.dev/skills-ask-zac) routes across the full set.
+`unslop` is a model-invoked productivity reference that other writing skills can call. It pairs with [writing-for-agents](https://aihero.dev/skills-writing-for-agents) and [technical-writing](https://aihero.dev/skills-technical-writing).

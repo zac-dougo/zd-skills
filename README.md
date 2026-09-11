@@ -2,44 +2,44 @@
 
 A collection of reusable skills for Claude Code, Codex, and other coding agents. The repository contains 47 skills:
 
-- 35 promoted skills in the plugin
-- 8 beta skills in `skills/in-progress/`
+- 43 promoted skills in the plugin
 - 4 utility skills in `skills/misc/`
 
-The original engineering skills come from [Matt Pocock](https://github.com/mattpocock). The pstack additions come from [Lauren Tan, known as poteto](https://github.com/poteto). This repository maintains and adapts both sets, and includes the custom `study-course` workflow.
+The original engineering skills come from [Matt Pocock](https://github.com/mattpocock). The pstack additions come from [Lauren Tan, known as poteto](https://github.com/poteto). This repository maintains and adapts both sets, and includes the custom `copse` issue tracker integration.
 
 ## Start here
 
-Use [`ask-zac`](./skills/engineering/ask-zac/SKILL.md) when you are unsure which skill or flow fits.
-
 For most engineering work:
 
-1. Run [`setup-matt-pocock-skills`](./skills/engineering/setup-matt-pocock-skills/SKILL.md) once per repository.
-2. Run [`grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) to settle the problem, terminology, and decisions.
-3. Run [`to-spec`](./skills/engineering/to-spec/SKILL.md) for work that needs a durable spec.
-4. Run [`to-tickets`](./skills/engineering/to-tickets/SKILL.md) to split the spec into dependency-aware tickets.
-5. Run [`implement`](./skills/engineering/implement/SKILL.md) to build the tickets with TDD and code review.
+1. Run [`grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) to settle the problem, terminology, and decisions.
+2. Run [`to-spec`](./skills/engineering/to-spec/SKILL.md) for work that needs a durable spec.
+3. Run [`to-tickets`](./skills/engineering/to-tickets/SKILL.md) to split the spec into dependency-aware tickets.
+4. Build the tickets, then run [`code-review`](./skills/engineering/code-review/SKILL.md) to review the changes against the spec and the repository standards.
 
-Skip the spec and ticket steps for a small change. Run [`tdd`](./skills/engineering/tdd/SKILL.md) directly when you want a test-first implementation.
+Skip the spec and ticket steps for a small change.
 
 ## Common tasks
 
 | Task | Skill |
 | --- | --- |
-| Choose a workflow | [`ask-zac`](./skills/engineering/ask-zac/SKILL.md) |
 | Clarify an idea in a repository | [`grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) |
-| Plan a large effort across sessions | [`wayfinder`](./skills/engineering/wayfinder/SKILL.md) |
-| Triage incoming bugs or requests | [`triage`](./skills/engineering/triage/SKILL.md) |
 | Understand project terminology | [`domain-modeling`](./skills/engineering/domain-modeling/SKILL.md) |
 | Understand module shape | [`codebase-design`](./skills/engineering/codebase-design/SKILL.md) |
 | Diagnose a hard bug | [`diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md) |
 | Check risks beyond a diff | [`blast-radius`](./skills/engineering/blast-radius/SKILL.md) |
-| Compare competing implementations | [`arena`](./skills/engineering/arena/SKILL.md) |
-| Parallelize independent work | [`swarm`](./skills/engineering/swarm/SKILL.md) |
 | Review a branch or PR | [`code-review`](./skills/engineering/code-review/SKILL.md) |
+| Run a broad quality gate | [`review`](./skills/engineering/review/SKILL.md) |
+| Build test-first | [`tdd`](./skills/engineering/tdd/SKILL.md) |
+| Commit and open a PR | [`commit`](./skills/engineering/commit/SKILL.md) |
+| Plan an architecture | [`design`](./skills/engineering/design/SKILL.md) |
+| Track Spec Kit blocks as issues | [`block-issues`](./skills/engineering/block-issues/SKILL.md) |
+| Implement a Spec Kit block | [`block-implement`](./skills/engineering/block-implement/SKILL.md) |
+| Keep the build minimal | [`ponytail`](./skills/engineering/ponytail/SKILL.md) |
+| Explain how something works | [`how`](./skills/engineering/how/SKILL.md) |
+| Find out why code looks this way | [`why`](./skills/engineering/why/SKILL.md) |
+| Prove app behavior like a user | [`create-verification-skill`](./skills/engineering/create-verification-skill/SKILL.md) |
+| Keep a verification skill honest | [`maintain-verification-skill`](./skills/engineering/maintain-verification-skill/SKILL.md) |
 | Record decisions during long work | [`show-me-your-work`](./skills/engineering/show-me-your-work/SKILL.md) |
-| Explain a subsystem or change | [`teach`](./skills/teaching/teach/SKILL.md) |
-| Work through one week of supplied course material | [`study-course`](./skills/teaching/study-course/SKILL.md) |
 | Write agent-facing documents | [`writing-for-agents`](./skills/productivity/writing-for-agents/SKILL.md) |
 | Write technical documentation | [`technical-writing`](./skills/productivity/technical-writing/SKILL.md) |
 | Remove AI writing tells | [`unslop`](./skills/productivity/unslop/SKILL.md) |
@@ -52,19 +52,22 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 
 #### User-invoked
 
-- [`ask-zac`](./skills/engineering/ask-zac/SKILL.md): Routes you to the right skill or workflow.
 - [`grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md): Builds shared terminology and records decisions while grilling.
-- [`triage`](./skills/engineering/triage/SKILL.md): Moves incoming issues through triage roles.
 - [`improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md): Finds codebase deepening opportunities and grills through the selected one.
-- [`setup-matt-pocock-skills`](./skills/engineering/setup-matt-pocock-skills/SKILL.md): Configures the tracker, labels, and domain document layout.
 - [`to-spec`](./skills/engineering/to-spec/SKILL.md): Publishes a conversation as a tracker-backed spec.
 - [`to-tickets`](./skills/engineering/to-tickets/SKILL.md): Splits a plan into tracer-bullet tickets with blocking edges.
-- [`implement`](./skills/engineering/implement/SKILL.md): Builds tickets with TDD and closes with code review.
-- [`wayfinder`](./skills/engineering/wayfinder/SKILL.md): Maps large efforts as decision tickets.
-- [`arena`](./skills/engineering/arena/SKILL.md): Compares parallel attempts at one task and synthesizes the strongest result.
-- [`swarm`](./skills/engineering/swarm/SKILL.md): Runs parallel workers over independent slices or races.
 - [`show-me-your-work`](./skills/engineering/show-me-your-work/SKILL.md): Records a TSV decision trail for long-running work.
 - [`blast-radius`](./skills/engineering/blast-radius/SKILL.md): Finds risks beyond a diff and proves the central safety fact.
+- [`review`](./skills/engineering/review/SKILL.md): Runs the four-pass quality gate over a diff or PR.
+- [`commit`](./skills/engineering/commit/SKILL.md): Commits on a feature branch and opens a PR.
+- [`tdd`](./skills/engineering/tdd/SKILL.md): Drives a red-green-refactor cycle on a requirement.
+- [`block-issues`](./skills/engineering/block-issues/SKILL.md): Creates one GitHub issue per Spec Kit tasks.md block.
+- [`design`](./skills/engineering/design/SKILL.md): Produces a pre-implementation architecture plan.
+- [`block-implement`](./skills/engineering/block-implement/SKILL.md): Implements one Spec Kit tasks.md block end to end.
+- [`how`](./skills/engineering/how/SKILL.md): Explains how a subsystem works, or critiques its architecture.
+- [`why`](./skills/engineering/why/SKILL.md): Investigates why code looks the way it does, with cited evidence.
+- [`create-verification-skill`](./skills/engineering/create-verification-skill/SKILL.md): Generates a project-local skill that drives an app like a user.
+- [`maintain-verification-skill`](./skills/engineering/maintain-verification-skill/SKILL.md): Audits a verification skill and its feature map.
 
 #### Model-invoked
 
@@ -72,13 +75,20 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 - [`copse`](./skills/engineering/copse/SKILL.md): Uses Copse records and worktree links as the local issue tracker.
 - [`diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md): Reproduces, instruments, fixes, and regression-tests hard bugs.
 - [`research`](./skills/engineering/research/SKILL.md): Researches primary sources and writes cited Markdown.
-- [`tdd`](./skills/engineering/tdd/SKILL.md): Runs a red-green-refactor loop one vertical slice at a time.
 - [`domain-modeling`](./skills/engineering/domain-modeling/SKILL.md): Challenges terminology and records domain decisions.
 - [`codebase-design`](./skills/engineering/codebase-design/SKILL.md): Designs deep modules with small interfaces and clean seams.
 - [`code-review`](./skills/engineering/code-review/SKILL.md): Reviews changes against repository standards and the originating spec.
 - [`resolving-merge-conflicts`](./skills/engineering/resolving-merge-conflicts/SKILL.md): Resolves merge or rebase conflicts by tracing intent.
-- [`version-control`](./skills/engineering/version-control/SKILL.md): Always-on git discipline for engineering work: one worktree and branch per feature or fix, main stays clean, history stays readable, merges stay safe.
 - [`wizard`](./skills/engineering/wizard/SKILL.md): Generates scripts for setup steps that require human action.
+- [`running-tdd-cycles`](./skills/engineering/running-tdd-cycles/SKILL.md): Runs a strict red-green-refactor loop one requirement at a time.
+- [`reviewing-changes`](./skills/engineering/reviewing-changes/SKILL.md): Reviews diffs across code, security, architecture, and acceptance.
+- [`designing-architecture`](./skills/engineering/designing-architecture/SKILL.md): Designs architecture with a TDD-ready implementation plan.
+- [`creating-block-issues`](./skills/engineering/creating-block-issues/SKILL.md): Publishes minimal GitHub issues per tasks.md block.
+- [`committing-changes`](./skills/engineering/committing-changes/SKILL.md): Lands work with branch, hook, message, and PR discipline.
+- [`implementing-blocks`](./skills/engineering/implementing-blocks/SKILL.md): Builds one tasks.md block with TDD, review, PR, and CI loop.
+- [`shell-discipline`](./skills/engineering/shell-discipline/SKILL.md): Keeps shell commands auditable, one intent per call.
+- [`engineering-philosophy`](./skills/engineering/engineering-philosophy/SKILL.md): Weights decisions with KISS, YAGNI, DRY, and SOLID.
+- [`ponytail`](./skills/engineering/ponytail/SKILL.md): Builds the laziest working solution at adjustable intensity.
 
 ### Productivity
 
@@ -86,7 +96,6 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 
 - [`grill-me`](./skills/productivity/grill-me/SKILL.md): Interviews you about a plan without writing repository state.
 - [`handoff`](./skills/productivity/handoff/SKILL.md): Writes a compact handoff for another session or agent.
-- [`to-questionnaire`](./skills/productivity/to-questionnaire/SKILL.md): Creates questions for someone else to answer.
 - [`wait-what`](./skills/productivity/wait-what/SKILL.md): Re-explains a message that did not land.
 - [`automate-me`](./skills/productivity/automate-me/SKILL.md): Creates or updates a personal mode skill from repeated preferences.
 - [`reflect`](./skills/productivity/reflect/SKILL.md): Turns durable session lessons into approved skill edits.
@@ -98,30 +107,13 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 - [`writing-for-agents`](./skills/productivity/writing-for-agents/SKILL.md): Guides writing for skills and other agent-facing documents.
 - [`unslop`](./skills/productivity/unslop/SKILL.md): Removes AI writing tells and keeps prose concrete.
 
-### Teaching
-
-#### User-invoked
-
-- [`teach`](./skills/teaching/teach/SKILL.md): Teaches a concept over multiple sessions in a stateful workspace.
-- [`study-course`](./skills/teaching/study-course/SKILL.md): Guides you through a named week of supplied course material.
-
 ## Custom skills
 
-- [`study-course`](./skills/teaching/study-course/SKILL.md): The custom weekly course help workflow. It keeps a plan, attempts, prerequisite gaps, notes, and learning records across sessions while following the course material you provide.
 - [`copse`](./skills/engineering/copse/SKILL.md): The custom Copse issue tracker integration for the engineering skills.
 
-## Beta skills
+## Adapted skills
 
-These skills are public but are not included in the plugin. Install them directly with `skills.sh` if you want to try them.
-
-- [`loop-me`](./skills/in-progress/loop-me/SKILL.md): Develops implementable workflow specs over multiple sessions.
-- [`writing-beats`](./skills/in-progress/writing-beats/SKILL.md): Shapes an article one beat at a time.
-- [`writing-fragments`](./skills/in-progress/writing-fragments/SKILL.md): Mines raw writing fragments for future articles.
-- [`writing-shape`](./skills/in-progress/writing-shape/SKILL.md): Shapes raw Markdown into an article paragraph by paragraph.
-- [`claude-handoff`](./skills/in-progress/claude-handoff/SKILL.md): Hands work to a fresh background Claude agent.
-- [`setup-ts-deep-modules`](./skills/in-progress/setup-ts-deep-modules/SKILL.md): Adds dependency-cruiser boundaries to a TypeScript repository.
-- [`implement-spec`](./skills/in-progress/implement-spec/SKILL.md): Implements a spec across a ticket task graph.
-- [`retro`](./skills/in-progress/retro/SKILL.md): Suggests improvements to the coding-agent environment. This is currently a stub.
+Eighteen skills are adapted from third-party sources (MIT licensed) and rewritten for this repo's conventions: the `review`, `commit`, `tdd`, `block-issues`, `design`, `block-implement`, `running-tdd-cycles`, `reviewing-changes`, `designing-architecture`, `creating-block-issues`, `committing-changes`, `implementing-blocks`, `shell-discipline`, and `engineering-philosophy` skills come from [swell-agents/coding-skills](https://github.com/swell-agents/coding-skills); `ponytail` comes from [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail); and `how`, `why`, `create-verification-skill`, and `maintain-verification-skill` come from the pstack plugin by Lauren Tan (shipped in the Cursor plugins collection).
 
 ## Utility skills
 

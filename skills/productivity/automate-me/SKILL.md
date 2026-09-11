@@ -14,7 +14,7 @@ This skill orchestrates an inline mining pass, the repository's skill-authoring 
 
 ### 0. Check for an existing skill
 
-Look recursively for `.agents/skills/**/*-mode/SKILL.md` and `~/.agents/skills/*-mode/SKILL.md` matching the user's handle. Mode skills can live in a personal category directory (`.agents/skills/<handle>/`), not only at the top level. If one exists, ask the user to choose (unless they already said "update my skill" or similar):
+Look recursively for `*-mode/SKILL.md` matching the user's handle in the harness's skill directories (`.agents/skills/` and `~/.agents/skills/` on Agent-Skills-standard harnesses, or your harness's equivalent). Mode skills can live in a personal category directory, not only at the top level. If one exists, ask the user to choose (unless they already said "update my skill" or similar):
 
 - Update the existing skill (default for repeat runs)
 - Start fresh (rare; ask why before doing it)
@@ -26,9 +26,9 @@ Update mode changes the rest of the flow:
 
 ### 1. Mine their history
 
-Locate the active workspace's transcripts before fanning out. The system prompt names the workspace's `agent-transcripts/` directory. Use only that path. Do not search transcripts from unrelated workspaces.
+Locate the active workspace's transcripts before fanning out: use your harness's transcript location for the workspace (usually named in the system prompt or session settings). Use only that path. Do not search transcripts from unrelated workspaces. If your harness exposes no transcript files, mine the current conversation instead.
 
-Survey recent agent conversations within that scope for recurring patterns. Run multiple parallel subagents across slices of history (e.g. last 2-4 weeks, split into 3 slices so each has enough material). Each slice mining subagent reads transcripts from the workspace-scoped path the parent provides, looks for the signals below, and returns a short structured list of patterns it saw with evidence pointers. Default signals worth hunting:
+Survey recent agent conversations within that scope for recurring patterns. Run multiple parallel subagents across slices of history (e.g. last 2-4 weeks, split into 3 slices so each has enough material), or work the slices sequentially inline if your harness has no subagents. Each slice mining subagent reads transcripts from the workspace-scoped path the parent provides, looks for the signals below, and returns a short structured list of patterns it saw with evidence pointers. Default signals worth hunting:
 
 - Response preferences (length, tone, format, "dumb it down" corrections)
 - Delegation habits (subagents, models, specialized workflows, parallelism)
@@ -52,7 +52,7 @@ Don't dump 20 questions. Two structured rounds plus one open question is usually
 Group the combined signals into sections. Common ones (use only what applies):
 
 - **Response style**: length, tone, format.
-- **Autonomy**: how much to do without asking; MCP tool use.
+- **Autonomy**: how much to do without asking; integration use.
 - **Understand first**: which skills to reach for when scoping or investigating a change.
 - **Subagents**: default, parallelism, model-to-task, specialized workflows.
 - **Prose / code discipline**: principles, lint tools, style guides.
@@ -66,7 +66,7 @@ The **poteto-mode** skill shows the shape. Read it for granularity. Don't copy i
 
 Use the repository's skill-authoring guidance to author the skill. Placement:
 
-- Path: preserve an existing mode skill's category. For a new mode, use `.agents/skills/<handle>/<handle>-mode/SKILL.md` when the repo has an established personal category for that handle; otherwise default to `.agents/skills/<handle>-mode/SKILL.md` in the project (or `~/.agents/skills/<handle>-mode/` if the user prefers a personal skill).
+- Path: preserve an existing mode skill's category. For a new mode, use `<handle>/<handle>-mode/SKILL.md` under the harness's project skill directory when the repo has an established personal category for that handle; otherwise default to `<handle>-mode/SKILL.md` in the project skill directory (or the harness's personal skill directory if the user prefers a personal skill).
 - Handle: the user's first name or chosen identifier.
 - Frontmatter `description`: trigger on their name + `/<handle>-mode` + "work in their style", not on generic keywords like "write code" or "review PR".
 - Frontmatter formatting: follow the repository's YAML rules. Keep `description` as one YAML scalar; quote it or use `description: >-` with indented continuation lines when punctuation or wrapping requires it.

@@ -20,4 +20,4 @@ Choose tutorial, how-to, reference, or explanation before editing. Keep instruct
 
 ## Where it fits
 
-`technical-writing` is a reach-for-it-anytime productivity standalone. It complements [writing-for-agents](https://aihero.dev/skills-writing-for-agents) for agent-facing documents and [unslop](https://aihero.dev/skills-unslop) for prose cleanup. [ask-zac](https://aihero.dev/skills-ask-zac) routes across the full set.
+`technical-writing` is a reach-for-it-anytime productivity standalone. It complements [writing-for-agents](https://aihero.dev/skills-writing-for-agents) for agent-facing documents and [unslop](https://aihero.dev/skills-unslop) for prose cleanup.

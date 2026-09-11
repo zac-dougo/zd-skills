@@ -20,4 +20,4 @@ The generated mode is user-invoked by default because it is heavy and opinionate
 
 ## Where it fits
 
-`automate-me` is a reach-for-it-anytime productivity standalone. It pairs with [reflect](https://aihero.dev/skills-reflect) for lessons from one session and [writing-for-agents](https://aihero.dev/skills-writing-for-agents) for the resulting skill's structure. [ask-zac](https://aihero.dev/skills-ask-zac) routes across the full set.
+`automate-me` is a reach-for-it-anytime productivity standalone. It pairs with [reflect](https://aihero.dev/skills-reflect) for lessons from one session and [writing-for-agents](https://aihero.dev/skills-writing-for-agents) for the resulting skill's structure.

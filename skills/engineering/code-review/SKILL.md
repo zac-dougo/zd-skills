@@ -8,11 +8,11 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 - **Standards**: does the code conform to this repo's documented coding standards?
 - **Spec**: does the code faithfully implement the originating issue / spec?
 
-Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings.
+Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings. If your harness cannot run subagents, run the two axes sequentially inline instead.
 
-Use this after implementation to check standards and spec compliance. Ask the user to run `/arena` before implementation when competing implementations need comparison. Call the Skill tool with "blast-radius" before merge when the main risk is hidden consumers or runtime behavior. Do not run both reviews by default.
+Use this after implementation to check standards and spec compliance. Call the Skill tool with "blast-radius" before merge when the main risk is hidden consumers or runtime behavior. Do not run both reviews by default.
 
-The issue tracker should have been provided to you. If `docs/agents/issue-tracker.md` is missing, tell the user to run `/setup-matt-pocock-skills`.
+The issue tracker should have been provided to you. If `docs/agents/issue-tracker.md` is missing, ask the user where the originating spec lives.
 
 ## Process
 
@@ -57,7 +57,7 @@ Each smell reads *what it is* → *how to fix*; match it against the diff:
 - **Middle Man**: a class or function that mostly just delegates onward. → cut it, call the real target direct.
 - **Refused Bequest**: a subclass or implementer that ignores or overrides most of what it inherits. → drop the inheritance, use composition.
 
-### 4. Spawn both sub-agents in parallel
+### 4. Spawn both sub-agents in parallel (or run both axes inline, sequentially, if your harness has no subagents)
 
 **Standards sub-agent prompt** should include:
 

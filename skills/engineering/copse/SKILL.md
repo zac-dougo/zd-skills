@@ -44,7 +44,7 @@ Rules:
 - Generate a new UUID for every issue.
 - Use the UUID as the filename, with a `.md` suffix.
 - Use only `open`, `closed`, or `archived` for `status`.
-- Store triage labels in the TOML `labels` array. Keep exactly one category label and one state label.
+- Store labels in the TOML `labels` array. Keep exactly one category label and one state label.
 - Preserve unknown front matter keys and the body when editing an existing record.
 - Refuse to overwrite a malformed record. Report its path and error instead.
 - Keep the issue body in Markdown. Put `Blocked by` and `Parent` references in the body when those relationships apply.
@@ -79,17 +79,16 @@ When another skill says to publish or fetch a ticket, use the Copse records:
 | Assign a worktree | Write a matching `.copse/links/<uuid>.md` record. |
 | Find ready work | Read open issues, keep those with `ready-for-agent`, then exclude issues whose `Blocked by` references an open issue or whose link already assigns a worktree. |
 
-Use the triage labels configured in `docs/agents/triage-labels.md`. Do not invent Copse-specific label names when the repository already has a mapping.
+Use the labels configured in `docs/agents/triage-labels.md` when that file exists. Do not invent Copse-specific label names when the repository already has a mapping.
 
 ## Limits
 
-Copse does not write to GitHub Issues. Copse's Map view reads GitHub-backed Wayfinder maps, so local Copse records cannot provide a native Wayfinder map or native blocking edge. For Copse-only repositories:
+Copse does not write to GitHub Issues. Local Copse records cannot provide a native blocking edge. For Copse-only repositories:
 
 - Keep `Blocked by: <uuid>, <uuid>` in the child issue body.
 - Keep parent relationships in a `Parent: <uuid>` line or section.
 - Treat `.copse/issues/` as the source of truth for issue state.
 - Do not claim that a Copse record has a native dependency or sub-issue relationship.
-- If the user needs a Wayfinder map, use the GitHub tracker or the local Markdown tracker instead, unless a later Copse version documents map support.
 
 ## Verification
 

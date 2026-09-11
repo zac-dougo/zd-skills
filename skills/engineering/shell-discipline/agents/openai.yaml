@@ -1,0 +1,3 @@
+interface:
+  display_name: "Shell Discipline"
+  short_description: "One command per call, no inline env vars"

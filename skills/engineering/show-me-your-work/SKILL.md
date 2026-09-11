@@ -53,7 +53,7 @@ Commit it only when the work is ambitious enough that a reviewer needs the trail
 
 ## Audit the log against the transcript
 
-At the end of the run, before handing back, check the log told the truth. Read this run's transcript under the active workspace's `agent-transcripts/` directory (the system prompt names the path). Do not search transcripts from unrelated workspaces. Walk the log against what actually happened:
+At the end of the run, before handing back, check the log told the truth. Read this run's transcript from your harness's transcript location for the active workspace. Do not search transcripts from unrelated workspaces. If your harness exposes no transcript, audit against the conversation instead. Walk the log against what actually happened:
 
 - Every row maps to a real action. Cut invented or aspirational entries.
 - Each row's evidence resolves and shows what the row claims.

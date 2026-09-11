@@ -1,0 +1,3 @@
+interface:
+  display_name: "Committing Changes"
+  short_description: "Branch, hooks, commit rules, and PR discipline"

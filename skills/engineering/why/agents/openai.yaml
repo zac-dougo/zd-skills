@@ -1,0 +1,5 @@
+interface:
+  display_name: "Why"
+  short_description: "Investigate why code looks this way"
+policy:
+  allow_implicit_invocation: false

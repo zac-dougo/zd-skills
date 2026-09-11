@@ -1,0 +1,3 @@
+interface:
+  display_name: "Running TDD Cycles"
+  short_description: "Strict red-green-refactor TDD discipline"
