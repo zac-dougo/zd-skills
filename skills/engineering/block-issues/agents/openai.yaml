@@ -1,5 +1,0 @@
-interface:
-  display_name: "Block Issues"
-  short_description: "One GitHub issue per tasks.md block"
-policy:
-  allow_implicit_invocation: false

@@ -1,9 +1,9 @@
 # Agent skills
 
-A collection of reusable skills for Claude Code, Codex, and other coding agents. The repository contains 47 skills:
+A collection of reusable skills for Claude Code, Codex, and other coding agents. The repository contains 35 skills:
 
-- 43 promoted skills in the plugin
-- 4 utility skills in `skills/misc/`
+- 35 promoted skills in the plugin
+- No utility skills in `skills/misc/`
 
 The original engineering skills come from [Matt Pocock](https://github.com/mattpocock). The pstack additions come from [Lauren Tan, known as poteto](https://github.com/poteto). This repository maintains and adapts both sets, and includes the custom `copse` issue tracker integration.
 
@@ -28,12 +28,8 @@ Skip the spec and ticket steps for a small change.
 | Diagnose a hard bug | [`diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md) |
 | Check risks beyond a diff | [`blast-radius`](./skills/engineering/blast-radius/SKILL.md) |
 | Review a branch or PR | [`code-review`](./skills/engineering/code-review/SKILL.md) |
-| Run a broad quality gate | [`review`](./skills/engineering/review/SKILL.md) |
-| Build test-first | [`tdd`](./skills/engineering/tdd/SKILL.md) |
 | Commit and open a PR | [`commit`](./skills/engineering/commit/SKILL.md) |
 | Plan an architecture | [`design`](./skills/engineering/design/SKILL.md) |
-| Track Spec Kit blocks as issues | [`block-issues`](./skills/engineering/block-issues/SKILL.md) |
-| Implement a Spec Kit block | [`block-implement`](./skills/engineering/block-implement/SKILL.md) |
 | Keep the build minimal | [`ponytail`](./skills/engineering/ponytail/SKILL.md) |
 | Explain how something works | [`how`](./skills/engineering/how/SKILL.md) |
 | Find out why code looks this way | [`why`](./skills/engineering/why/SKILL.md) |
@@ -58,12 +54,8 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 - [`to-tickets`](./skills/engineering/to-tickets/SKILL.md): Splits a plan into tracer-bullet tickets with blocking edges.
 - [`show-me-your-work`](./skills/engineering/show-me-your-work/SKILL.md): Records a TSV decision trail for long-running work.
 - [`blast-radius`](./skills/engineering/blast-radius/SKILL.md): Finds risks beyond a diff and proves the central safety fact.
-- [`review`](./skills/engineering/review/SKILL.md): Runs the four-pass quality gate over a diff or PR.
 - [`commit`](./skills/engineering/commit/SKILL.md): Commits on a feature branch and opens a PR.
-- [`tdd`](./skills/engineering/tdd/SKILL.md): Drives a red-green-refactor cycle on a requirement.
-- [`block-issues`](./skills/engineering/block-issues/SKILL.md): Creates one GitHub issue per Spec Kit tasks.md block.
 - [`design`](./skills/engineering/design/SKILL.md): Produces a pre-implementation architecture plan.
-- [`block-implement`](./skills/engineering/block-implement/SKILL.md): Implements one Spec Kit tasks.md block end to end.
 - [`how`](./skills/engineering/how/SKILL.md): Explains how a subsystem works, or critiques its architecture.
 - [`why`](./skills/engineering/why/SKILL.md): Investigates why code looks the way it does, with cited evidence.
 - [`create-verification-skill`](./skills/engineering/create-verification-skill/SKILL.md): Generates a project-local skill that drives an app like a user.
@@ -80,12 +72,8 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 - [`code-review`](./skills/engineering/code-review/SKILL.md): Reviews changes against repository standards and the originating spec.
 - [`resolving-merge-conflicts`](./skills/engineering/resolving-merge-conflicts/SKILL.md): Resolves merge or rebase conflicts by tracing intent.
 - [`wizard`](./skills/engineering/wizard/SKILL.md): Generates scripts for setup steps that require human action.
-- [`running-tdd-cycles`](./skills/engineering/running-tdd-cycles/SKILL.md): Runs a strict red-green-refactor loop one requirement at a time.
-- [`reviewing-changes`](./skills/engineering/reviewing-changes/SKILL.md): Reviews diffs across code, security, architecture, and acceptance.
-- [`designing-architecture`](./skills/engineering/designing-architecture/SKILL.md): Designs architecture with a TDD-ready implementation plan.
-- [`creating-block-issues`](./skills/engineering/creating-block-issues/SKILL.md): Publishes minimal GitHub issues per tasks.md block.
+- [`designing-architecture`](./skills/engineering/designing-architecture/SKILL.md): Designs architecture with an implementation-ready plan.
 - [`committing-changes`](./skills/engineering/committing-changes/SKILL.md): Lands work with branch, hook, message, and PR discipline.
-- [`implementing-blocks`](./skills/engineering/implementing-blocks/SKILL.md): Builds one tasks.md block with TDD, review, PR, and CI loop.
 - [`shell-discipline`](./skills/engineering/shell-discipline/SKILL.md): Keeps shell commands auditable, one intent per call.
 - [`engineering-philosophy`](./skills/engineering/engineering-philosophy/SKILL.md): Weights decisions with KISS, YAGNI, DRY, and SOLID.
 - [`ponytail`](./skills/engineering/ponytail/SKILL.md): Builds the laziest working solution at adjustable intensity.
@@ -113,16 +101,11 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 
 ## Adapted skills
 
-Eighteen skills are adapted from third-party sources (MIT licensed) and rewritten for this repo's conventions: the `review`, `commit`, `tdd`, `block-issues`, `design`, `block-implement`, `running-tdd-cycles`, `reviewing-changes`, `designing-architecture`, `creating-block-issues`, `committing-changes`, `implementing-blocks`, `shell-discipline`, and `engineering-philosophy` skills come from [swell-agents/coding-skills](https://github.com/swell-agents/coding-skills); `ponytail` comes from [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail); and `how`, `why`, `create-verification-skill`, and `maintain-verification-skill` come from the pstack plugin by Lauren Tan (shipped in the Cursor plugins collection).
+Six skills are adapted from third-party sources (MIT licensed) and rewritten for this repo's conventions: the `commit`, `design`, `designing-architecture`, `committing-changes`, `shell-discipline`, and `engineering-philosophy` skills come from [swell-agents/coding-skills](https://github.com/swell-agents/coding-skills); `ponytail` comes from [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail); and `how`, `why`, `create-verification-skill`, and `maintain-verification-skill` come from the pstack plugin by Lauren Tan (shipped in the Cursor plugins collection).
 
 ## Utility skills
 
-These skills are kept in `skills/misc/` and are not included in the plugin.
-
-- [`git-guardrails-claude-code`](./skills/misc/git-guardrails-claude-code/SKILL.md): Blocks dangerous Git commands with Claude Code hooks.
-- [`migrate-to-shoehorn`](./skills/misc/migrate-to-shoehorn/SKILL.md): Replaces test type assertions with `@total-typescript/shoehorn`.
-- [`scaffold-exercises`](./skills/misc/scaffold-exercises/SKILL.md): Creates exercise, problem, solution, and explainer directories.
-- [`setup-pre-commit`](./skills/misc/setup-pre-commit/SKILL.md): Configures Husky, lint-staged, formatting, type checking, and tests.
+No utility skills are currently kept in `skills/misc/`.
 
 ## Development
 

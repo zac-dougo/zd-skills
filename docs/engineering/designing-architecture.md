@@ -31,4 +31,4 @@ A database overlay runs as a mini-pipeline inside the same skill: technology fam
 
 ## Where it fits
 
-`designing-architecture` sits ahead of the build: its step list feeds [running-tdd-cycles](https://aihero.dev/skills-running-tdd-cycles), and [reviewing-changes](https://aihero.dev/skills-reviewing-changes) later verifies the implementation against the design. Its closest neighbours are [engineering-philosophy](https://aihero.dev/skills-engineering-philosophy), whose KISS and YAGNI weights dominate during design, and [grill-with-docs](https://aihero.dev/skills-grill-with-docs), which settles the decisions this skill records.
+`designing-architecture` sits ahead of the build: its step list feeds implementation, and [code-review](https://aihero.dev/skills-code-review) later checks the result against the requirements and repository standards. Its closest neighbours are [engineering-philosophy](https://aihero.dev/skills-engineering-philosophy), whose KISS and YAGNI weights dominate during design, and [grill-with-docs](https://aihero.dev/skills-grill-with-docs), which settles the decisions this skill records.

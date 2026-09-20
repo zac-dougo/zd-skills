@@ -1,6 +1,6 @@
 ---
 name: designing-architecture
-description: Design pre-implementation architecture: components, libraries, data flow, schema.
+description: "Design pre-implementation architecture: components, libraries, data flow, schema."
 ---
 
 ## Methodology
@@ -9,7 +9,7 @@ description: Design pre-implementation architecture: components, libraries, data
 
 1. Parse the feature into functional and non-functional requirements (latency, throughput, availability, consistency, failure modes).
 2. Identify constraints: language, framework, existing codebase, deployment target, regulatory.
-3. Read the project's architecture map (often `docs/architecture.md`): see the architecture-map pattern in the `reviewing-changes` skill for the convention. Identify integration points with existing modules.
+3. Read the project's architecture map, often `docs/architecture.md`, and identify integration points with existing modules.
 
 ### Phase 2: Technology landscape scan
 
@@ -49,7 +49,7 @@ description: Design pre-implementation architecture: components, libraries, data
     - Independently testable.
     - Delivers incremental value.
 17. Order by dependency (what must exist before what).
-18. Hand off to `running-tdd-cycles` for execution. Do not implement here.
+18. Hand off the implementation plan to the engineering team. Do not implement here.
 
 ## Database architecture overlay
 
@@ -75,7 +75,7 @@ When the design includes a data layer, run a parallel mini-pipeline:
 
 ## Output
 
-Produce a single Markdown document. The architecture document should be self-contained and feed directly into `running-tdd-cycles`.
+Produce a single Markdown document. The architecture document should be self-contained and ready for implementation.
 
 ```markdown
 ---
@@ -135,8 +135,7 @@ Decisions that need user input before implementation begins.
 
 ## Cross-references
 
-- `running-tdd-cycles`: receives the implementation plan from this skill.
-- `reviewing-changes`: verifies the implementation against this design.
+- `code-review`: checks the implementation against the originating requirements and repository standards.
 - The repo's language conventions (lint configs, style guides, or a conventions skill): language-specific tooling and idioms feed into the design.
 - `engineering-philosophy`: KISS, YAGNI, Use Libraries, No Magic dominate during design.
 
