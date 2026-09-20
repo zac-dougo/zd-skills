@@ -34,4 +34,4 @@ Validation at trust boundaries, error handling that prevents data loss, security
 
 ## Where it fits
 
-`ponytail` is a lens that rides along on any coding work rather than a step in any chain. Its closest neighbours are [engineering-philosophy](https://aihero.dev/skills-engineering-philosophy), whose YAGNI and simplicity weights it sharpens into a procedure, and [reviewing-changes](https://aihero.dev/skills-reviewing-changes), which catches the over-building this skill is meant to prevent.
+`ponytail` is a lens that rides along on any coding work rather than a step in any chain. Its closest neighbours are [engineering-philosophy](https://aihero.dev/skills-engineering-philosophy), whose YAGNI and simplicity weights it sharpens into a procedure, and [code-review](https://aihero.dev/skills-code-review), which catches over-building against the requirements and repository standards.

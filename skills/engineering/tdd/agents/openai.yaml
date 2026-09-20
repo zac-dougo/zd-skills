@@ -1,5 +1,0 @@
-interface:
-  display_name: "TDD"
-  short_description: "Red-green-refactor cycle on a requirement"
-policy:
-  allow_implicit_invocation: false

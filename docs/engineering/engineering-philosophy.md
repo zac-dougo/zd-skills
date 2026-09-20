@@ -27,4 +27,4 @@ The driving skill breaks the tie. During design, simplicity beats completeness; 
 
 ## Where it fits
 
-`engineering-philosophy` is the vocabulary layer underneath the engineering skills rather than a step in any chain. Its closest neighbours are the three workflows that lean on it heaviest: [designing-architecture](https://aihero.dev/skills-designing-architecture), [reviewing-changes](https://aihero.dev/skills-reviewing-changes), and [running-tdd-cycles](https://aihero.dev/skills-running-tdd-cycles).
+`engineering-philosophy` is the vocabulary layer underneath the engineering skills rather than a step in any chain. Its closest neighbours are [designing-architecture](https://aihero.dev/skills-designing-architecture), [code-review](https://aihero.dev/skills-code-review), and [committing-changes](https://aihero.dev/skills-committing-changes).

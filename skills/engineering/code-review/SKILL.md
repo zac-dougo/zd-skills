@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: "Review the changes since a fixed point (commit, branch, tag, or merge-base) along two axes: Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match what the originating issue/spec asked for?). Runs both reviews in parallel sub-agents and reports them side by side. Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\"."
+description: "Two-axis review of changes since a fixed point (commit, branch, tag, or merge-base): Standards (does the code follow this repo's documented coding standards?) and Spec (does the code match the originating issue/spec?). Use when the user wants to review a branch, a PR, work-in-progress changes, or asks to \"review since X\", and there is a spec to check against."
 ---
 
 Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
@@ -10,7 +10,7 @@ Two-axis review of the diff between `HEAD` and a fixed point the user supplies:
 
 Both axes run as **parallel sub-agents** so they don't pollute each other's context, then this skill aggregates their findings. If your harness cannot run subagents, run the two axes sequentially inline instead.
 
-Use this after implementation to check standards and spec compliance. Call the Skill tool with "blast-radius" before merge when the main risk is hidden consumers or runtime behavior. Do not run both reviews by default.
+Use this after implementation to check standards and spec compliance, when there is an originating issue or spec to check against. Tell the user to run `/blast-radius` before merge when the main risk is hidden consumers or runtime behavior.
 
 The issue tracker should have been provided to you. If `docs/agents/issue-tracker.md` is missing, ask the user where the originating spec lives.
 

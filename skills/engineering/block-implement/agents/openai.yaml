@@ -1,5 +1,0 @@
-interface:
-  display_name: "Block Implement"
-  short_description: "Implement one tasks.md block end to end"
-policy:
-  allow_implicit_invocation: false

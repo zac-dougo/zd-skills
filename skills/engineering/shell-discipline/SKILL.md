@@ -1,6 +1,6 @@
 ---
 name: shell-discipline
-description: Shell discipline for agent-run commands: one command per call, no inline env vars, explicit auth tools. Use when running shell commands in any repo.
+description: "Shell discipline for agent-run commands: one command per call, no inline env vars, explicit auth tools. Use when running shell commands in any repo."
 ---
 
 ## Shell Commands

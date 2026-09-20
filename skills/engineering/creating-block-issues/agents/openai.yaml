@@ -1,3 +1,0 @@
-interface:
-  display_name: "Creating Block Issues"
-  short_description: "One GitHub issue per tasks.md block"
