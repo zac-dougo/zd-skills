@@ -1,5 +1,65 @@
 # mattpocock-skills
 
+## 1.2.4
+
+### Patch Changes
+
+- [`73f5406`](https://github.com/mattpocock/skills/commit/73f540645ddb69b3a130d15eeb3e8366bc6bc1c2) Thanks [@zac-dougo](https://github.com/zac-dougo)! - Add fifteen adapted third-party skills (MIT): six user-invoked wrappers (`review`, `commit`, `tdd`, `block-issues`, `design`, `block-implement`) and nine model-invoked skills (`running-tdd-cycles`, `reviewing-changes`, `designing-architecture`, `creating-block-issues`, `committing-changes`, `implementing-blocks`, `shell-discipline`, `engineering-philosophy`, `ponytail`). Fourteen come from swell-agents/coding-skills, `ponytail` from DietrichGebert/ponytail; sources are credited in the README.
+
+  - Vendored with their reference, script, and template assets, minus the upstream Claude-Code-only pieces: `allowed-tools` / `argument-hint` / `alwaysApply` frontmatter, the `agents/` subagent shims, and the verbatim Claude-Code archival references.
+  - De-claudeified for any harness: subagent/background steps carry inline fallbacks, transcript lookup starts from the harness's own location, model references are vendor-neutral, MCP wording is integrations, and cross-skill links follow this repo's Skill-tool convention.
+  - The plugin now ships 39 skills. Each new skill has a bucket README entry, a top-level README entry, and a docs page.
+
+- [`73f5406`](https://github.com/mattpocock/skills/commit/73f540645ddb69b3a130d15eeb3e8366bc6bc1c2) Thanks [@zac-dougo](https://github.com/zac-dougo)! - Add four user-invoked skills adapted from the pstack plugin by Lauren Tan (MIT): `how`, `why`, `create-verification-skill`, and `maintain-verification-skill`. The requested pstack `reflect` was resolved without adding: this repo's `productivity/reflect` is already an adapted superset of it (same three-reviewer pipeline and synthesizer, plus richer triggers, harness-neutral transcripts and models, and a structure-preference pass), confirmed with the repo owner.
+
+  - De-cursor-fied for any harness: Cursor MCP discovery reads as harness integrations, `Task`/`subagent_type`/`readonly` params read as generic subagent calls with inline fallbacks, model-panel pins (grok/fable/opus/sol) read as the strongest model the harness offers, `.cursor/skills/` output paths read as the target repo's project skill directory, and MCP wording is integrations throughout.
+  - `how` critique mode references two prompt files missing from the source snapshot, so the rubric ships inline in SKILL.md instead.
+  - The plugin now ships 43 skills. Each new skill has a bucket README entry, a top-level README entry, and a docs page.
+
+- [`3694d79`](https://github.com/mattpocock/skills/commit/3694d796712a087786242d34d0db4e7a75ad5df0) Thanks [@zac-dougo](https://github.com/zac-dougo)! - Restore `teach` as a user-invoked productivity skill. To place lessons in the user's zone of proximal development, it can Ask about prior education and experience or Quiz current ability as separate diagnostic actions. Self-reported background goes in `NOTES.md`; demonstrated learning goes in learning records.
+
+- [#848](https://github.com/mattpocock/skills/pull/848) [`f02e2ed`](https://github.com/mattpocock/skills/commit/f02e2ed3624d031272f8547742d23bf6bca8b072) Thanks [@mattpocock](https://github.com/mattpocock)! - domain-modeling: trigger on discussing codebase terminology and on writing or editing a CONTEXT.md or an ADR directly, replacing the narrower "pin down domain terminology or a ubiquitous language" / "record an architectural decision" phrasing. Also drops the "another skill needs to maintain the domain model" caveat, since that's the invoking skill's job to state explicitly, not this description's.
+
+- [#911](https://github.com/mattpocock/skills/pull/911) [`4f28947`](https://github.com/mattpocock/skills/commit/4f289474bad013fe2be8f8769d733f59d9103d6b) Thanks [@mattpocock](https://github.com/mattpocock)! - Quote the `description` front matter in `to-spec`, `code-review`, `setup-matt-pocock-skills`, `writing-fragments`, `writing-shape`, and `wait-what`. An unquoted colon-space left over from the em-dash sweep in [#905](https://github.com/mattpocock/skills/issues/905) made each block invalid YAML, so `skills.sh` skipped all six during discovery and they couldn't be listed or installed via `npx skills`.
+
+- [#917](https://github.com/mattpocock/skills/pull/917) [`85f83d3`](https://github.com/mattpocock/skills/commit/85f83d3fde1d3a90d5c9a657f6998c79a6c37308) Thanks [@mattpocock](https://github.com/mattpocock)! - grilling: update the round template so consecutive questions are separated by a horizontal rule (`---`) instead of running together.
+
+- [#879](https://github.com/mattpocock/skills/pull/879) [`d419977`](https://github.com/mattpocock/skills/commit/d419977fe07d9e1607d3523f3579310bbb076b93) Thanks [@mattpocock](https://github.com/mattpocock)! - grilling: remove em-dashes from `SKILL.md`, replacing them with colons and semicolons so the instructions read as plain text.
+
+- [`73f5406`](https://github.com/mattpocock/skills/commit/73f540645ddb69b3a130d15eeb3e8366bc6bc1c2) Thanks [@zac-dougo](https://github.com/zac-dougo)! - Make the promoted skills harness-neutral instead of Claude- and Codex-specific.
+
+  - Every skill that fans work out to subagents or background agents (`research`, `code-review`, `grilling`, `improve-codebase-architecture`, `codebase-design` / `DESIGN-IT-TWICE.md`, `reflect`, `automate-me`) now carries an inline fallback: run the steps sequentially in-session when the harness has no subagents.
+  - Transcript lookup (`reflect`, `automate-me`, `show-me-your-work`) now starts from the harness's own transcript location instead of assuming a system-prompt-named `agent-transcripts/` directory, with a digest-or-conversation fallback when the harness exposes no transcript files.
+  - `reflect` no longer names vendor model codenames: reviewer tables point at the configured judgment/tooling models or the strongest reasoning model the harness offers.
+  - `reflect` reviewers and `automate-me` say integrations instead of MCP throughout.
+  - `automate-me` skill-directory paths are framed as the harness's skill directories, with `.agents/skills/` kept as the Agent-Skills-standard example.
+  - Bucket `README.md`s and `.agents/invocation.md` note that harnesses beyond Claude Code and Codex use their own equivalent of the user-invoked metadata.
+
+- [#905](https://github.com/mattpocock/skills/pull/905) [`e6e9577`](https://github.com/mattpocock/skills/commit/e6e957797d8cceb5b351c0dc840369523f9fb8fb) Thanks [@mattpocock](https://github.com/mattpocock)! - Remove every em-dash from the repo's prose (docs, `SKILL.md` files, ADRs, `README.md`, scripts, JSON/YAML metadata), hand-rewriting each sentence with a comma, colon, period, parentheses, or conjunction rather than mechanically substituting the character. `CLAUDE.md`/`AGENTS.md` now says not to reintroduce them.
+
+- [`73f5406`](https://github.com/mattpocock/skills/commit/73f540645ddb69b3a130d15eeb3e8366bc6bc1c2) Thanks [@zac-dougo](https://github.com/zac-dougo)! - Remove twelve skills and retire two buckets: `ask-zac`, `triage`, `setup-matt-pocock-skills`, `implement`, `wayfinder`, `arena`, `swarm`, `tdd`, `version-control`, `to-questionnaire`, `teach`, and `study-course` are deleted, along with their docs pages. The `teaching/`, `in-progress/`, and `deprecated/` buckets are gone: the plugin now ships 24 skills (15 engineering, 9 productivity) plus 4 utility skills in `misc/`.
+
+  - The main flow is now `grill-with-docs → to-spec → to-tickets → build → code-review`, with no setup step and no router.
+  - `to-spec`, `to-tickets`, `code-review`, `blast-radius`, and `copse` no longer point at the setup skill; they ask for the repo's tracker configuration instead. The `ready-for-agent` label keeps its name without the triage vocabulary.
+  - Every surviving docs page is re-synced: neighbours that no longer exist are removed from the routing tables and "Where it fits" sections, and the router footers are gone.
+  - `CONTEXT.md` drops the wayfinder and triage domain terms, and `.agents/install-block.md` no longer names the setup skill in the skills.sh whole-set form.
+
+- [#878](https://github.com/mattpocock/skills/pull/878) [`e3e547b`](https://github.com/mattpocock/skills/commit/e3e547b57d549110a0aa6ff40fd7b871c01c76c9) Thanks [@mattpocock](https://github.com/mattpocock)! - Standardize cross-skill invocation on an explicit "call the Skill tool" instruction instead of bare `/skill`-style prose, across `code-review`, `diagnosing-bugs`, `grill-with-docs`, `grill-me`, `improve-codebase-architecture`, `tdd`, `to-spec`, `to-tickets`, `triage`, and `wayfinder`.
+
+  - A skill that names another skill in prose ("run the `/grilling` skill") does not reliably cause it to load. This is the documented rough edge behind `grill-with-docs`'s most-reported problem. Naming the tool directly (`Call the Skill tool with "grilling"`) is intended to raise the hit rate. Dropping the leading `/` also makes the instruction harness-neutral rather than less: it no longer assumes Claude Code's trigger syntax.
+  - A step needing more than one skill now says so as multiple calls ("Call the Skill tool twice, for `grilling` and `domain-modeling`"), not one call carrying two names.
+  - Documents the convention in `.agents/invocation.md` for future skills to follow.
+
+- [#880](https://github.com/mattpocock/skills/pull/880) [`1dab982`](https://github.com/mattpocock/skills/commit/1dab98299c3b81f560026c01b7ebf55ed5d91373) Thanks [@mattpocock](https://github.com/mattpocock)! - Stop skills from trying to reach user-invoked skills through the Skill tool: fix cross-skill references that violated the "no other skill can call it" invariant in `.agents/invocation.md`, in `to-spec`, `wayfinder`, `to-tickets`, `triage`, `code-review`, and `diagnosing-bugs`.
+
+  - `to-spec`, `wayfinder`, `to-tickets`, `triage`, and `code-review` each carried a precondition ("...run `/setup-matt-pocock-skills` if not") that PR [#878](https://github.com/mattpocock/skills/issues/878) rewrote into a literal `Call the Skill tool with "setup-matt-pocock-skills"` instruction. `setup-matt-pocock-skills` is user-invoked, so none of these skills (user-invoked or model-invoked) can call it. Reworded all five as instructions for the agent to tell the human to run it instead.
+  - `diagnosing-bugs`'s Phase 6 post-mortem hand off to `improve-codebase-architecture` (also user-invoked) the same way, from an autonomous, often-unattended bug-fixing flow with no human in the loop to catch the failed call. Removed the hand-off outright rather than softening it, since it rarely fired in practice. Phase 6 is now "Cleanup" only; the mechanical checklist is untouched.
+  - Added a carve-out paragraph to `.agents/invocation.md`'s "Dependencies between them" section: the `Call the Skill tool with "name"` convention only applies when the named skill is model-invoked. This is the section PR [#878](https://github.com/mattpocock/skills/issues/878) introduced without reconciling it against the user-invoked/model-invoked invariant stated eight lines above it; the gap is most of why this bug reached six call sites instead of one.
+
+  Fixes [#453](https://github.com/mattpocock/skills/issues/453).
+
+- [#904](https://github.com/mattpocock/skills/pull/904) [`594f0f8`](https://github.com/mattpocock/skills/commit/594f0f83188921a60d45d63d6cdac509de20df2c) Thanks [@mattpocock](https://github.com/mattpocock)! - wait-what: follow `CONTEXT-MAP.md` to the right `CONTEXT.md` when a repo indexes multiple contexts that way instead of keeping a single root `CONTEXT.md`.
+
 ## 1.2.3
 
 ### Patch Changes
