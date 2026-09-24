@@ -12,6 +12,7 @@ Reachable only when you type them (Claude Code: `disable-model-invocation: true`
 - **[automate-me](./automate-me/SKILL.md)**: Turn repeated working preferences into a personal mode skill.
 - **[reflect](./reflect/SKILL.md)**: Review a completed session and route durable lessons into skill edits.
 - **[technical-writing](./technical-writing/SKILL.md)**: Write and review clear technical documentation.
+- **[teach](./teach/SKILL.md)**: Build a tailored course from your goals, reported background, and demonstrated knowledge.
 
 ## Model-invoked
 
