@@ -42,7 +42,7 @@ The architect skill researches *qualified* resources (community- or industry-vet
 | Source | What it's good for |
 |---|---|
 | **12-Factor App** (`12factor.net`) | The canonical service-design checklist. |
-| **OWASP** (`owasp.org`) | Security best practices: see the `reviewing-changes` skill's OWASP checklist. |
+| **OWASP** (`owasp.org`) | Security best practices and application security verification. |
 | **Language style guides** | PEP 8 + PEP 257 (Python), Effective Go, the Rust API Guidelines. |
 
 ## Anti-sources

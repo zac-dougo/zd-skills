@@ -27,4 +27,4 @@ Grilling settles what to build and what words to use for it. This skill settles 
 
 ## Where it fits
 
-`design` is the user-invoked front door to [designing-architecture](https://aihero.dev/skills-designing-architecture), which owns the research budget, the rubric, and the output shape it follows. Upstream it takes grilled decisions; downstream its step list feeds [running-tdd-cycles](https://aihero.dev/skills-running-tdd-cycles).
+`design` is the user-invoked front door to [designing-architecture](https://aihero.dev/skills-designing-architecture), which owns the research budget, the rubric, and the output shape it follows. Upstream it takes grilled decisions; downstream its step list feeds implementation.

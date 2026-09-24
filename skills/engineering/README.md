@@ -12,12 +12,8 @@ Reachable only when you type them (Claude Code: `disable-model-invocation: true`
 - **[to-tickets](./to-tickets/SKILL.md)**: Break any plan, spec, or conversation into a set of tracer-bullet tickets, each declaring its blocking edges, whether as text in a local file or as native blocking links on a real tracker.
 - **[show-me-your-work](./show-me-your-work/SKILL.md)**: Keep a reviewable TSV decision trail for long-running or unattended work.
 - **[blast-radius](./blast-radius/SKILL.md)**: Find what a change could break beyond its diff and prove the central safety fact.
-- **[review](./review/SKILL.md)**: Run the four-pass quality gate over a diff or PR.
 - **[commit](./commit/SKILL.md)**: Commit on a feature branch and open a PR.
-- **[tdd](./tdd/SKILL.md)**: Drive a red-green-refactor cycle on a requirement.
-- **[block-issues](./block-issues/SKILL.md)**: Create one GitHub issue per Spec Kit tasks.md block.
 - **[design](./design/SKILL.md)**: Produce a pre-implementation architecture plan.
-- **[block-implement](./block-implement/SKILL.md)**: Implement one Spec Kit tasks.md block end to end.
 - **[how](./how/SKILL.md)**: Explain how a subsystem works, or critique its architecture once you understand it.
 - **[why](./why/SKILL.md)**: Investigate why code looks the way it does, with cited evidence and calibrated confidence.
 - **[create-verification-skill](./create-verification-skill/SKILL.md)**: Generate a project-local skill that drives an app the way a user does, to prove behavior.
@@ -36,12 +32,8 @@ Model- or user-reachable (rich trigger phrasing so the model can reach for them)
 - **[code-review](./code-review/SKILL.md)**: Two-axis review of the diff since a fixed point: **Standards** (does it follow the repo's coding standards, plus a Fowler smell baseline?) and **Spec** (does it faithfully implement the originating issue/spec?), run as parallel sub-agents.
 - **[resolving-merge-conflicts](./resolving-merge-conflicts/SKILL.md)**: Work through an in-progress git merge or rebase conflict hunk by hunk, resolving by intent traced to each side's primary source, then finish the operation, never `--abort`.
 - **[wizard](./wizard/SKILL.md)**: Generate an interactive bash wizard that walks a human through steps only they can perform: provisioning infrastructure, setting up credentials or CI secrets, walking an unfamiliar third-party dashboard, or running a one-off migration or cutover.
-- **[running-tdd-cycles](./running-tdd-cycles/SKILL.md)**: Strict red-green-refactor TDD discipline, any language.
-- **[reviewing-changes](./reviewing-changes/SKILL.md)**: Four-pass review: code, security, architecture, acceptance.
-- **[designing-architecture](./designing-architecture/SKILL.md)**: Pre-implementation architecture with a TDD-ready plan.
-- **[creating-block-issues](./creating-block-issues/SKILL.md)**: One minimal GitHub issue per tasks.md block.
+- **[designing-architecture](./designing-architecture/SKILL.md)**: Pre-implementation architecture with an implementation-ready plan.
 - **[committing-changes](./committing-changes/SKILL.md)**: Branch, hooks, commit rules, and PR discipline.
-- **[implementing-blocks](./implementing-blocks/SKILL.md)**: One tasks.md block end to end: TDD, review, PR, CI loop.
 - **[shell-discipline](./shell-discipline/SKILL.md)**: One command per call, no inline env vars, explicit auth.
 - **[engineering-philosophy](./engineering-philosophy/SKILL.md)**: KISS, YAGNI, DRY, SOLID judgment weights.
 - **[ponytail](./ponytail/SKILL.md)**: Laziest working solution: YAGNI, stdlib first, shortest diff.

@@ -1,6 +1,6 @@
 ---
 name: engineering-philosophy
-description: Apply KISS, YAGNI, DRY, SOLID, fail-fast, be-brief on every code decision.
+description: KISS, YAGNI, DRY, SOLID, fail-fast, be-brief judgment weights. Compose with implementation, review, and design skills for tradeoff calls; other skills pull this in rather than firing it standalone.
 ---
 
 ## Principles
@@ -31,7 +31,7 @@ description: Apply KISS, YAGNI, DRY, SOLID, fail-fast, be-brief on every code de
 These principles are *judgement weights*, not rules. When two principles conflict, this skill defers to the workflow skill driving the task:
 
 - During `designing-architecture`: KISS, YAGNI, Use Libraries, and No Magic dominate. Reject premature abstractions and speculative configurability.
-- During `reviewing-changes`: SOLID, DRY, Investigate-Don't-Mask, Fail Fast, and Stay In Scope dominate. Flag defensive try/except that hides root causes; flag duplication; flag oversized classes; flag edits to files outside the change's stated scope.
-- During `running-tdd-cycles`: Small Steps, Stay In Scope, and Fail Fast dominate. One requirement per red-green-refactor; one logical change per commit; touch only the files that requirement needs.
+- During code review: SOLID, DRY, Investigate-Don't-Mask, Fail Fast, and Stay In Scope dominate. Flag defensive try/except that hides root causes; flag duplication; flag oversized classes; flag edits to files outside the change's stated scope.
+- During test-first implementation: Small Steps, Stay In Scope, and Fail Fast dominate. One requirement per red-green-refactor; one logical change per commit; touch only the files that requirement needs.
 
 When a user proposes a change that violates one of these principles, name the principle and explain the consequence. Don't just refuse.

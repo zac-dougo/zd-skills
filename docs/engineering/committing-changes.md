@@ -31,4 +31,4 @@ Bisect and revert. A commit that does one thing can be blamed, bisected, and rev
 
 ## Where it fits
 
-`committing-changes` closes every build: it lands the cycles from [running-tdd-cycles](https://aihero.dev/skills-running-tdd-cycles) and the blocks from [implementing-blocks](https://aihero.dev/skills-implementing-blocks). Its closest neighbour is [shell-discipline](https://aihero.dev/skills-shell-discipline): one auditable tool call per git command, no chains.
+`committing-changes` closes every build by landing the implementation on a feature branch and opening a reviewable PR. Its closest neighbour is [shell-discipline](https://aihero.dev/skills-shell-discipline): one auditable tool call per git command, no chains.
