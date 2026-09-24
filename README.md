@@ -1,8 +1,8 @@
 # Agent skills
 
-A collection of reusable skills for Claude Code, Codex, and other coding agents. The repository contains 35 skills:
+A collection of reusable skills for Claude Code, Codex, and other coding agents. The repository contains 36 skills:
 
-- 35 promoted skills in the plugin
+- 36 promoted skills in the plugin
 - No utility skills in `skills/misc/`
 
 The original engineering skills come from [Matt Pocock](https://github.com/mattpocock). The pstack additions come from [Lauren Tan, known as poteto](https://github.com/poteto). This repository maintains and adapts both sets, and includes the custom `copse` issue tracker integration.
@@ -88,6 +88,7 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 - [`automate-me`](./skills/productivity/automate-me/SKILL.md): Creates or updates a personal mode skill from repeated preferences.
 - [`reflect`](./skills/productivity/reflect/SKILL.md): Turns durable session lessons into approved skill edits.
 - [`technical-writing`](./skills/productivity/technical-writing/SKILL.md): Writes and reviews technical documentation.
+- [`teach`](./skills/productivity/teach/SKILL.md): Builds a tailored course from your goals, reported background, and demonstrated knowledge.
 
 #### Model-invoked
 
