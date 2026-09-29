@@ -1,8 +1,8 @@
 # Agent skills
 
-A collection of reusable skills for Claude Code, Codex, and other coding agents. The repository contains 36 skills:
+A collection of reusable skills for Claude Code, Codex, and other coding agents. The repository contains 38 skills:
 
-- 36 promoted skills in the plugin
+- 38 promoted skills in the plugin
 - No utility skills in `skills/misc/`
 
 The original engineering skills come from [Matt Pocock](https://github.com/mattpocock). The pstack additions come from [Lauren Tan, known as poteto](https://github.com/poteto). This repository maintains and adapts both sets, and includes the custom `copse` issue tracker integration.
@@ -16,6 +16,8 @@ For most engineering work:
 3. Run [`to-tickets`](./skills/engineering/to-tickets/SKILL.md) to split the spec into dependency-aware tickets.
 4. Build the tickets, then run [`code-review`](./skills/engineering/code-review/SKILL.md) to review the changes against the spec and the repository standards.
 
+For a large effort that spans multiple agent sessions and still has major unknowns, run [`wayfinder`](./skills/engineering/wayfinder/SKILL.md). Set up the repository's tracker and domain-doc conventions first with [`setup-matt-pocock-skills`](./skills/engineering/setup-matt-pocock-skills/SKILL.md).
+
 Skip the spec and ticket steps for a small change.
 
 ## Common tasks
@@ -23,6 +25,8 @@ Skip the spec and ticket steps for a small change.
 | Task | Skill |
 | --- | --- |
 | Clarify an idea in a repository | [`grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md) |
+| Plan a multi-session effort with unknowns | [`wayfinder`](./skills/engineering/wayfinder/SKILL.md) |
+| Configure this repo for the engineering skills | [`setup-matt-pocock-skills`](./skills/engineering/setup-matt-pocock-skills/SKILL.md) |
 | Understand project terminology | [`domain-modeling`](./skills/engineering/domain-modeling/SKILL.md) |
 | Understand module shape | [`codebase-design`](./skills/engineering/codebase-design/SKILL.md) |
 | Diagnose a hard bug | [`diagnosing-bugs`](./skills/engineering/diagnosing-bugs/SKILL.md) |
@@ -48,6 +52,8 @@ Promoted skills are included in the plugin. User-invoked skills run only when yo
 
 #### User-invoked
 
+- [`setup-matt-pocock-skills`](./skills/engineering/setup-matt-pocock-skills/SKILL.md): Configures the repo's issue tracker, triage labels, and domain-doc layout.
+- [`wayfinder`](./skills/engineering/wayfinder/SKILL.md): Plans a large, multi-session effort as a map of decision tickets.
 - [`grill-with-docs`](./skills/engineering/grill-with-docs/SKILL.md): Builds shared terminology and records decisions while grilling.
 - [`improve-codebase-architecture`](./skills/engineering/improve-codebase-architecture/SKILL.md): Finds codebase deepening opportunities and grills through the selected one.
 - [`to-spec`](./skills/engineering/to-spec/SKILL.md): Publishes a conversation as a tracker-backed spec.
