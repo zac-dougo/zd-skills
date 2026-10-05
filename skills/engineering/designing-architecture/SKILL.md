@@ -1,145 +1,34 @@
 ---
 name: designing-architecture
-description: "Design pre-implementation architecture: components, libraries, data flow, schema."
+description: Design components, interfaces, data flow, and migrations before implementation. Use for a requested architecture plan or a consequential design decision.
 ---
 
-## Methodology
+# Designing architecture
 
-### Phase 1: Requirements
+Read [working guidance](../../shared/working-guidance.md) once for this task. Produce a design at the depth the decision needs. A design-only request ends with a plan; when design is part of an authorized implementation task, continue into implementation once consequential questions are settled.
 
-1. Parse the feature into functional and non-functional requirements (latency, throughput, availability, consistency, failure modes).
-2. Identify constraints: language, framework, existing codebase, deployment target, regulatory.
-3. Read the project's architecture map, often `docs/architecture.md`, and identify integration points with existing modules.
+## Start from the project
 
-### Phase 2: Technology landscape scan
+Read the relevant code, architecture notes, contracts, and constraints. Separate agreed requirements from assumptions and open decisions. Resolve routine details using existing conventions; ask about choices that materially affect scope, behaviour, compatibility, or operations.
 
-4. **Discover candidates.** Search awesome-lists (`awesome-<language>`, `awesome-<domain>`), GitHub by topic, package registries (PyPI, npm, crates.io). For data layer questions, also DB-Engines and CNCF Landscape.
-5. **Evaluate each candidate** with consistent dimensions:
-   - GitHub stars and trend, last commit, release cadence.
-   - Open vs closed issue ratio.
-   - Documentation quality (fetch the README; check for runnable examples).
-   - License compatibility (MIT/Apache/BSD safe; AGPL/GPL needs deliberate decision).
-   - Dependency footprint (transitive count, security history).
-6. **Cross-check official docs.** Verify the library actually supports the exact use case: a star count doesn't.
-7. **Compare alternatives** in a table with consistent rows and explicit trade-offs.
+For a small change, a short explanation of the affected interface, the chosen approach, and verification can be enough. Use a fuller design for new subsystems, uncertain integration, migrations, or substantial operational risk.
 
-### Phase 3: Pattern selection
+## Investigate decisions that are actually open
 
-8. Identify candidate patterns from problem shape:
-   - **Creational**: Factory, Builder, Singleton (only if state is genuinely global).
-   - **Structural**: Adapter, Decorator, Facade, Proxy.
-   - **Behavioural**: Strategy, Observer, Command, Chain of Responsibility, State.
-   - **Domain**: Repository, Unit of Work, Specification, Value Object.
-   - **Architectural**: Hexagonal / ports-and-adapters, Pipes & Filters, Event-Driven, CQRS, Saga, Outbox.
-9. Select the **minimum** patterns the problem needs. No pattern tourism.
-10. Map selections to the project's conventions; don't introduce a new pattern when an existing one fits.
+Prefer existing project capabilities when they meet the requirements. Research alternatives when choosing a new dependency or when evidence suggests the current approach cannot meet a concrete need. Verify relevant support, compatibility, maintenance, licensing constraints, and deployment requirements in primary sources. Popularity and recent commits are signals, not selection rules or proof of suitability. See [research sources](reference/qualified-sources.md) when an external choice is needed.
 
-### Phase 4: Design
+Compare only plausible alternatives and state the tradeoff driving the choice. Do not require a library survey for work that uses an established dependency unchanged.
 
-11. Define component structure: classes / modules / interfaces / boundaries.
-12. Define data flow: inputs → processing → outputs, including failure paths.
-13. Define error-handling strategy (retry, dead-letter, circuit-breaker, idempotency keys).
-14. Define configuration, secrets handling, dependency injection.
-15. Produce an ASCII diagram showing components, dependencies, and data direction.
+## Describe the resulting behaviour
 
-### Phase 5: Implementation plan
+Define the interfaces and ownership that matter, the data flow, and relevant failure handling. Use a diagram when it makes the relationships clearer. Consult [pattern examples](reference/pattern-catalogue.md) only when a concrete design problem warrants it; a named pattern is optional.
 
-16. Decompose into TDD-ready steps. Each step:
-    - Sized for one red-green-refactor cycle.
-    - Independently testable.
-    - Delivers incremental value.
-17. Order by dependency (what must exist before what).
-18. Hand off the implementation plan to the engineering team. Do not implement here.
+For data changes, describe invariants, access patterns, transaction boundaries, and the migration's compatibility requirements. Choose storage and indexes from the workload and query plans. Explain consistency and availability during failures when relevant instead of reducing the choice to a generic checklist.
 
-## Database architecture overlay
+Address configuration, permissions, secrets, retries, and recovery only where the change introduces or alters them. Distinguish measured performance from targets and estimates.
 
-When the design includes a data layer, run a parallel mini-pipeline:
+## Make the plan executable
 
-1. **Pick the technology family.**
-   - **Relational** (PostgreSQL, MySQL): strong consistency, complex joins, transactions.
-   - **Document** (MongoDB, DynamoDB): flexible schema, horizontal scale, simple access.
-   - **Key-value** (Redis, DynamoDB): sub-ms reads, cache-like access.
-   - **Time-series** (TimescaleDB, InfluxDB, ClickHouse): append-heavy, time-range queries.
-   - **Graph** (Neo4j, Neptune): multi-hop relationships are first-class.
-   - **Search** (Elasticsearch, OpenSearch, Meilisearch): full-text, faceted filtering.
-   - **NewSQL** (CockroachDB, Spanner, YugabyteDB): global consistency at scale.
-   Decide via CAP-theorem framing: which two of consistency, availability, partition tolerance does the workload force?
+State the chosen design and its rationale, affected contracts, dependency order, meaningful verification, and unresolved consequential decisions. Scale the document to the change. Use vertical increments where they can remain useful and verifiable; do not force every step into one testing technique.
 
-2. **Schema design.** Conceptual (ER diagram) → logical (3NF or deliberate denormalisation) → physical (data types, partitioning, sharding key). State trade-offs explicitly.
-
-3. **Indexing strategy.** B-tree for equality/range, Hash for exact match, GiST/GIN for full-text/geometry, BRIN for huge ordered tables, partial/filtered indexes for hot subsets. Composite indexes ordered by query selectivity.
-
-4. **Migration plan.** Zero-downtime where possible (expand → backfill → contract). Tooling (Alembic, Flyway, Liquibase, Prisma). Backward + forward compatibility for online deploys.
-
-5. **Security and compliance.** RBAC and row-level security where applicable. At-rest + in-transit encryption. Audit logging for sensitive ops.
-
-## Output
-
-Produce a single Markdown document. The architecture document should be self-contained and ready for implementation.
-
-```markdown
----
-purpose: Architecture design for <feature>
----
-
-# Architecture: <feature>
-
-## 1. Requirements
-Functional + non-functional, including SLA targets if relevant.
-
-## 2. Technology selection
-
-### Selected
-| Library | Purpose | Stars | Last release | Why |
-|---|---|---|---|---|
-| ... | ... | ... | ... | ... |
-
-### Rejected
-| Library | Reason |
-|---|---|
-| ... | ... |
-
-### Sources
-- [1] <awesome-list URL>
-- [2] <official docs URL>
-- [3] <ThoughtWorks Radar entry>
-
-## 3. Patterns
-The patterns selected and the concrete reason each fits this problem.
-
-## 4. Architecture
-ASCII diagram + per-component description.
-
-## 5. Data layer (if applicable)
-Technology, schema, indexes, migration plan.
-
-## 6. TDD-ready implementation plan
-1. **Step 1: <title>**: <what to implement>; depends on: none; test: <what the failing test pins down>.
-2. **Step 2: <title>**: ...
-   ...
-
-## 7. Open questions
-Decisions that need user input before implementation begins.
-```
-
-## Behavioural traits
-
-- **Research before recommending.** Never propose a library without checking GitHub activity, docs, and at least one alternative.
-- **Minimum viable architecture.** Design only what the feature needs. No speculative abstractions.
-- **Ecosystem first.** Always prefer established libraries to custom code. Check `awesome-*`, package registries, and official docs before writing anything bespoke.
-- **Explicit trade-offs.** When choosing between alternatives, state what is gained and what is lost.
-- **TDD-ready output.** Decompose every architecture into red-green-refactor-sized steps.
-- **Codebase-aware.** Read the architecture map and existing code before designing. Follow established conventions.
-- **No pattern tourism.** Apply a pattern only when it solves a concrete problem in the current feature.
-- **Recency matters.** Prefer libraries with commits in the last six months and recent releases.
-
-## Cross-references
-
-- `code-review`: checks the implementation against the originating requirements and repository standards.
-- The repo's language conventions (lint configs, style guides, or a conventions skill): language-specific tooling and idioms feed into the design.
-- `engineering-philosophy`: KISS, YAGNI, Use Libraries, No Magic dominate during design.
-
-## Reference
-
-- [reference/qualified-sources.md](reference/qualified-sources.md): curated list of research sources (awesome-*, ThoughtWorks Radar, DB-Engines, CNCF Landscape, Refactoring.guru, Fowler's catalogue, 12-factor, OWASP).
-- [reference/pattern-catalogue.md](reference/pattern-catalogue.md): design pattern descriptions with applicability tests.
+Behaviour changes need checks that could detect the relevant failure. Existing tests, focused regression tests, an integration exercise, or direct observation may be appropriate. Run required project gates during implementation. Save a document when requested or when its durability helps future work; otherwise an inline plan is sufficient.

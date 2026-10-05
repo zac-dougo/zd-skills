@@ -1,23 +1,31 @@
 ## What it does
 
-`automate-me` turns repeated working preferences into a personal `-mode` skill. It mines workspace-scoped transcripts, checks patterns with you, drafts the skill, and calls `unslop` for the final prose pass.
-
-It requires repeated evidence before it turns a preference into a rule. A single unusual conversation is not enough.
+Captures established working preferences in one maintained source. Routine preferences belong in shared instructions; an optional personal mode is created only when that is what the user wants.
 
 ## When to reach for it
 
-You invoke this by typing `/automate-me`, and the agent won't reach for it on its own. Reach for it when you want agents to follow your established style, delegation habits, verification rules, or response preferences. For one narrow workflow, write a regular skill instead.
+Invoke `$automate-me` in Codex or `/automate-me` in Claude Code when you want to establish or revise how an agent works with you.
 
-## The personal mode
+## Common questions
 
-The generated mode is user-invoked by default because it is heavy and opinionated. Run it again to update an existing mode from the history since its last edit. Review the draft before shipping it.
+**Do I need another mode skill for everyday preferences?**
+
+No. A shared instruction file can hold standing preferences. A mode skill is useful for behaviour you want to switch on explicitly.
+
+**Will one conversation become a universal rule?**
+
+An explicit standing preference can be recorded immediately. An inferred pattern needs stronger evidence, and an isolated incident should not become a blanket rule.
+
+**Does changing preferences automatically publish a PR?**
+
+No. Publication follows the scope you requested. Existing authorization is respected without an extra approval round.
 
 ## It's working if
 
-- The draft names repeated preferences with evidence from more than one session.
-- It avoids copying other skills into the mode and points to them instead.
-- The mode has a narrow trigger and changes how the agent works when explicitly invoked.
+- The result records concrete preferences without duplicating other rules.
+- Unrelated existing instructions are preserved.
+- You can tell whether the preferences apply routinely or only when invoked.
 
 ## Where it fits
 
-`automate-me` is a reach-for-it-anytime productivity standalone. It pairs with [reflect](https://aihero.dev/skills-reflect) for lessons from one session and [writing-for-agents](https://aihero.dev/skills-writing-for-agents) for the resulting skill's structure.
+reflect finds lessons in completed work; this workflow establishes where durable preferences belong. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.

@@ -4,11 +4,13 @@ description: Find what a change could break beyond its diff and prove the centra
 disable-model-invocation: true
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # Blast radius
 
 Find what a change breaks somewhere else, before it ships. Use for "blast radius of X", "what could this break", or reviewing a small diff you don't trust yet.
 
-Before tracing the change, call the Skill tool with "codebase-design" when module shape is unclear. Call it with "domain-modeling" when terminology or domain behavior is unclear. `blast-radius` then checks what the change breaks somewhere else.
+Before tracing the change, read and follow [codebase-design](../codebase-design/SKILL.md) when module shape is unclear. Read and follow [domain-modeling](../domain-modeling/SKILL.md) when terminology or domain behavior is unclear. `blast-radius` then checks what the change breaks somewhere else.
 
 Listing the callers is not the job. The agent can grep those in a second. The job is the breakage grep won't show you.
 

@@ -1,30 +1,22 @@
 ## What it does
 
-`design` produces a pre-implementation architecture plan through the `designing-architecture` skill: requirements, technology selection with rejected alternatives, patterns, components and data flow, and a TDD-ready step list.
-
-It is read-only. The skill never edits the diff or implements; the plan hands off to `tdd` for execution, and designing stops where building starts.
+Provides an explicit shortcut to an architecture plan. It follows designing-architecture at the depth the decision needs and keeps implementation outside the request unless you include it.
 
 ## When to reach for it
 
-You invoke this by typing `/design`, and the agent won't reach for it on its own. Reach for it when the shape of the solution is still open: which libraries, which patterns, which components.
-
-| Your situation | Reach for |
-| --- | --- |
-| The architecture is undecided | `design` |
-| The plan is settled and needs grilling | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
-| One design question needs a runnable answer | [prototype](https://aihero.dev/skills-prototype) |
+Invoke `$design` in Codex or `/design` in Claude Code with the feature or decision you want planned.
 
 ## Common questions
 
-**How is this different from grilling?**
-Grilling settles what to build and what words to use for it. This skill settles how to build it: libraries, patterns, components, data flow. A grilled decision is its input, not its output.
+**Will it implement the plan?**
+
+Only when you explicitly include implementation. Otherwise the result is the plan and any unresolved consequential decisions.
 
 ## It's working if
 
-- Every recommended library was checked for activity, docs, license, and at least one alternative.
-- The plan decomposes into red-green-refactor-sized steps, each independently testable.
-- Open questions are listed explicitly instead of decided silently.
+- You can identify the chosen approach, affected contracts, and verification.
+- A small design does not require a full ecosystem survey.
 
 ## Where it fits
 
-`design` is the user-invoked front door to [designing-architecture](https://aihero.dev/skills-designing-architecture), which owns the research budget, the rubric, and the output shape it follows. Upstream it takes grilled decisions; downstream its step list feeds implementation.
+This shortcut uses designing-architecture as its single workflow owner. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.

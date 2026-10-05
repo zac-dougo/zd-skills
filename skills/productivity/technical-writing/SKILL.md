@@ -4,6 +4,8 @@ description: Write and review clear technical documentation.
 disable-model-invocation: true
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # Technical writing
 
 The goal is writing a tired engineer understands on the first read. Four layers get you there, one question each: what kind of document is this, how do sentences address the reader, how much does each sentence carry, and can any sentence be read two ways. Apply all four.
@@ -99,7 +101,7 @@ Source: Kohl, The Global English Style Guide (SAS Press). Guideline text fetched
 
 ## Voice and repo specifics
 
-- After editing, call the Skill tool with "unslop". It owns the slop-pattern catalog: AI vocabulary, filler, hedging, and formatting tells.
+- After editing, read and follow [unslop](../unslop/SKILL.md). It owns the slop-pattern catalog: AI vocabulary, filler, hedging, and formatting tells.
 - PR descriptions and commit messages are writing too. Every layer except Diátaxis applies to them.
 - Product UI strings are not documentation. Use your product's copy guidelines for those.
 - Indent code snippets with tabs. Write real paths and real symbols. Make every count or tree claim true at the commit that lands it, and include the command that regenerates it.

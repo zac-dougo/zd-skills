@@ -1,91 +1,30 @@
 ---
 name: committing-changes
-description: Commit via feature branch + PR + git hooks; never push main, never merge.
+description: Commit intended changes on a feature branch and open or update a PR, preserving existing hooks and CI. Use when the user asks to commit, push, or prepare a PR.
 ---
 
-## Workflow
+# Committing changes
 
-1. **Install hooks** (once per repo).
-   From inside the target repo, run the installer that ships with this skill (in this skill's `scripts/` directory):
-   ```
-   bash <path-to-this-skill>/scripts/install-hooks.sh
-   ```
-   This copies `commit-msg` and `pre-push` into `.git/hooks/` and makes them executable. Idempotent.
+Read [working guidance](../../shared/working-guidance.md) once for this task.
 
-   Then install the PR-size CI workflow:
-   ```
-   bash <path-to-this-skill>/scripts/install-pr-size-workflow.sh
-   ```
-   This drops `.github/workflows/pr-size.yml` and appends `.gitattributes` exclusions. Idempotent.
+## Establish the scope
 
-2. **Branch check.** If on `main`, switch to a feature branch:
-   ```
-   git checkout -b <type>/<description>
-   ```
-   Valid `type` prefixes: `feat`, `fix`, `refactor`, `docs`, `test`, `chore`, `infra`, `ai-native`.
+Inspect status, the staged and unstaged diffs, the current branch, remotes, and the repository's contribution instructions. Preserve unrelated user changes. Use the user's requested commit scope or infer it from the completed task; ask only if mixed changes make ownership ambiguous.
 
-3. **Auto-fix before commit.** Run the project's linter/formatter (e.g., `ruff format && ruff check` for Python, `golangci-lint run` for Go, `forge fmt && solhint` for Solidity). The pre-commit hook (if installed) runs the project's full quality gate.
+Keep the requested endpoint: a request for a local commit does not automatically request a push or PR. A request to deliver through a PR includes the necessary branch, commit, push, and PR work. Check for an existing PR before creating one.
 
-4. **Commit & push.**
-   ```
-   git add <specific paths>
-   git commit -m "<subject conforming to rules below>"
-   git push -u origin <branch>
-   ```
+## Commit and deliver
 
-5. **Sync with main.**
-   ```
-   git fetch origin main
-   git merge origin/main
-   ```
-   Resolve conflicts; commit the merge; push.
+1. Identify the repository's default branch from its remote or project configuration. If on that branch, create a descriptive feature branch. Respect an existing task branch.
+2. Run the repository's applicable formatter, linter, and required checks. Scope automatic fixes to intended files. Preserve and run existing hooks; investigate failures rather than bypassing them.
+3. Stage specific intended paths and inspect the staged diff. Commit one logical change with the repo's message convention. If none is documented, use an imperative subject of at most 72 characters, starting with a capital and without a trailing period. Do not add attribution trailers unless required by the project or requested by the user.
+4. If publishing is authorized, push the feature branch without force. Open or update its PR with the concrete problem, changed behaviour, and actual verification results. Attach the PR to the current task when the host offers that capability.
+5. Report the commit or PR and any checks that could not be completed. Leave PR merging to the user unless they explicitly request it.
 
-6. **PR creation** (first push only).
-   ```
-   gh pr list --head <branch>
-   gh pr create --fill   # if no PR exists yet
-   ```
+Sync with the default branch only when needed for conflicts, required checks, or repository policy. Fetch it and use the repo's preferred integration method. Merging the default branch into the feature branch is allowed; merging the feature branch into the default branch or merging its PR is a separate user-controlled action. Preserve published history and do not force-push. Re-run affected checks after resolving conflicts.
 
-7. **Branch cleanup** (after the user has merged).
-   ```
-   git fetch --prune
-   git branch --merged main | grep -v '^\*\|main' | xargs -r git branch -d
-   ```
+## Repository setup is separate
 
-## Rules
+Routine commits do not install hooks, add workflows, change `.gitattributes`, or delete branches. Use [setup-matt-pocock-skills](../setup-matt-pocock-skills/SKILL.md) when the user explicitly requests repository setup. Its optional Git checks refer to [repository setup](reference/repository-setup.md).
 
-- **Never push directly to `main`.** Always feature branches + PRs. The `pre-push` hook blocks this.
-- **Never merge branches or PRs.** Always let the user merge.
-- **Never force-push.** No `--force`, no `--force-with-lease`. Create new commits instead.
-- **One logical change per commit.**
-- **PR size**: ≤1000 changed lines per PR (excluding tests, docs, lockfiles, generated). Enforced by `.github/workflows/pr-size.yml`.
-- **Commit-message subject** (enforced by `commit-msg` hook):
-  - Capital start (imperative mood: "Add", "Fix", "Refactor", not "added"/"adds").
-  - ≤ 72 chars.
-  - No trailing period.
-  - No `Co-Authored-By:` lines.
-
-## Why this discipline
-
-Each rule traces to a specific failure mode:
-- *No direct push to main* → no broken `main`, every change is reviewable.
-- *No agent-side merge* → the human keeps the merge decision; agents never close the loop unilaterally.
-- *No force-push* → preserves history; reviewers can trust commit hashes.
-- *One logical change per commit* → bisect works; reverts are surgical.
-- *Subject rules* → consistent log readability; no noisy attribution lines.
-
-## Cross-references
-
-- `shell-discipline`: issue these `git`/`gh` commands one per call, no `&&` chains.
-- `engineering-philosophy`: "Small Steps" and "Investigate, Don't Mask" map directly to one-logical-change-per-commit and don't-disable-failing-hooks.
-
-## Reference
-
-- [scripts/commit-msg](scripts/commit-msg): subject-line rules enforcer.
-- [scripts/pre-commit](scripts/pre-commit): runs project's lint/format/test before commit.
-- [scripts/pre-push](scripts/pre-push): blocks direct push to `main`/`master`.
-- [scripts/install-hooks.sh](scripts/install-hooks.sh): idempotent installer.
-- [templates/pr-size.yml](templates/pr-size.yml): GitHub Actions workflow that labels PR size and fails when >1000 changed lines (excluding tests, docs, lockfiles, generated).
-- [templates/gitattributes.example](templates/gitattributes.example): `linguist-generated`/`linguist-vendored` entries appended to `.gitattributes` so GitHub collapses generated files in PR diffs.
-- [scripts/install-pr-size-workflow.sh](scripts/install-pr-size-workflow.sh): idempotent installer for the workflow + `.gitattributes` block.
-- [reference/hook-troubleshooting.md](reference/hook-troubleshooting.md): common failure modes + fixes.
+There is no universal PR line limit. Follow a configured limit; otherwise split changes when it improves independent review and verification.

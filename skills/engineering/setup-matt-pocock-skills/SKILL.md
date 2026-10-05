@@ -4,6 +4,8 @@ description: "Configure this repo for the engineering skills: set up its issue t
 disable-model-invocation: true
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # Setup Matt Pocock's Skills
 
 Scaffold the per-repo configuration that the engineering skills assume:
@@ -12,7 +14,9 @@ Scaffold the per-repo configuration that the engineering skills assume:
 - **Triage labels**: the strings used for the five canonical triage roles
 - **Domain docs**: where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
 
-This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
+This is a prompt-driven setup workflow. Inspect the existing project, preserve its conventions, and perform the setup the user requested. Ask only about missing consequential choices. A request to configure a specific part does not require setting up every part.
+
+Optional Git hooks or CI checks belong to this setup workflow, not routine commits. Configure them only when explicitly requested, following [optional Git checks](../committing-changes/reference/repository-setup.md). Preserve existing hooks and CI.
 
 ## Process
 
@@ -31,7 +35,7 @@ Look at the current repo to understand its starting state. Read whatever exists;
 
 ### 2. Present findings and ask
 
-Summarise what's present and what's missing. Then take the sections in order. One section, one answer, then the next.
+Summarise what is present and what is missing within the requested setup. Ask a short round of unresolved choices; skip those already settled by the user or existing configuration.
 
 Lead each section with the recommended answer so the user can accept it in a word. Give a one-line explainer only when the choice genuinely branches; skip the section entirely when exploration already settled it (Section B when `triage` isn't installed, Section C when there's no monorepo).
 
@@ -61,24 +65,20 @@ The defaults are the five canonical roles, each label string equal to its name: 
 
 Offer **multi-context** (a root `CONTEXT-MAP.md` pointing to per-context `CONTEXT.md` files) only when exploration found monorepo signals. Then confirm which layout they want.
 
-### 3. Confirm and edit
+### 3. Prepare the changes
 
 Show the user a draft of:
 
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
 - The contents of `docs/agents/issue-tracker.md`, `docs/agents/domain.md`, and `docs/agents/triage-labels.md` (the last only when `triage` is installed)
 
-Let them edit before writing.
+If the request is for a proposal, wait for the user to select the changes. If the user authorized setup and consequential choices are settled, apply the changes without a second confirmation.
 
 ### 4. Write
 
 **Pick the file to edit:**
 
-- If `CLAUDE.md` exists, edit it.
-- Else if `AGENTS.md` exists, edit it.
-- If neither exists, ask the user which one to create; don't pick for them.
-
-Never create `AGENTS.md` when `CLAUDE.md` already exists (or vice versa); always edit the one that's already there.
+Use the instruction file the active agent actually loads. Preserve an existing shared source and use a short pointer from another agent's file when needed, instead of duplicating the instructions. For Codex, use `AGENTS.md`; for Claude Code, use `CLAUDE.md`. If both already exist, inspect their conventions and avoid conflicting copies. Follow an explicit user choice of file or agent.
 
 If an `## Agent skills` block already exists in the chosen file, update its contents in-place rather than appending a duplicate. Don't overwrite user edits to the surrounding sections.
 

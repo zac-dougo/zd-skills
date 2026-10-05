@@ -4,6 +4,8 @@ description: Explain how a subsystem works, or critique its architecture once yo
 disable-model-invocation: true
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # How
 
 Explore the codebase to answer "how does X work?" questions. Produce clear architectural explanations at the level of a senior engineer onboarding onto a subsystem. Enough to build a working mental model, not annotated source code.

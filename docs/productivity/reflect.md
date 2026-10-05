@@ -1,23 +1,27 @@
 ## What it does
 
-`reflect` mines a completed conversation for lessons that should change future agent behavior. Three reviewers examine judgment, tooling, and alternative interpretations, then a synthesizer routes findings to accepted edits, rejected ideas, or backlog.
-
-It does not edit skills automatically. You approve the accepted changes before they land.
+Reviews a completed session for lessons that would change future behaviour. It handles small corrections inline and uses independent review only when the lesson warrants it and delegation is permitted.
 
 ## When to reach for it
 
-You invoke this by typing `/reflect`, and the agent won't reach for it on its own. Reach for it after a complex task, a correction, a dead end with a reusable fix, or a workflow that exposed a missing skill rule. Skip trivial sessions.
+Invoke `$reflect` in Codex or `/reflect` in Claude Code after a correction or workflow problem. A session with no durable lesson needs no edit.
 
-## Keep lessons durable
+## Common questions
 
-A lesson earns a skill edit only when it would change a future decision. If a script, lint rule, metadata flag, or runtime check would enforce it better than prose, route it there instead.
+**Does reflection automatically edit skills or create backlog issues?**
+
+No. A proposal-only request produces concrete suggestions. Previously authorized edits can proceed without another confirmation, and backlog publication is not automatic.
+
+**Does it need three reviewers and a synthesizer?**
+
+No. There is no fixed agent count or model requirement. Any returned finding must be checked against the session and the affected skill.
 
 ## It's working if
 
-- Reviewers cite concrete moments from the active transcript.
-- Accepted findings name a target skill and a specific behavior change.
-- You see an approval gate before any skill edit is applied.
+- A proposed change cites evidence and names the behaviour it improves.
+- Existing adequate guidance is not duplicated.
+- The report distinguishes changes applied from suggestions left unapplied.
 
 ## Where it fits
 
-`reflect` is a reach-for-it-anytime productivity standalone. It pairs with [automate-me](https://aihero.dev/skills-automate-me) for personal workflow rules and [writing-for-agents](https://aihero.dev/skills-writing-for-agents) for editing agent-facing documents.
+automate-me captures durable working preferences. writing-for-agents guides edits to the actual instruction files. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.
