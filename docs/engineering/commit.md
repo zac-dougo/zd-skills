@@ -1,30 +1,22 @@
 ## What it does
 
-`commit` lands the staged work on a feature branch and opens a PR. It runs the `committing-changes` skill: branch check, lint and format, one logical change per commit, push, PR creation.
-
-It never merges. The human keeps the merge decision; the skill's job ends at a pushed branch with a PR open.
+Provides a short explicit command for committing intended work, pushing a feature branch, and opening or updating its PR. It delegates the rules to committing-changes so the two workflows stay consistent.
 
 ## When to reach for it
 
-You invoke this by typing `/commit`, and the agent won't reach for it on its own. Pass a message or scope hint, or nothing and the message is inferred from the staged diff.
-
-| Your situation | Reach for |
-| --- | --- |
-| Staged work is ready to land | `commit` |
-| The diff itself needs a verdict first | [review](https://aihero.dev/skills-review) or [code-review](https://aihero.dev/skills-code-review) |
-| Work is mid-flight and uncommitted | Commit first, then review; neither review skill sees uncommitted work |
+Invoke `$commit` in Codex or `/commit` in Claude Code. Include a message or scope hint if helpful. Specify local-only when you do not want publication.
 
 ## Common questions
 
-**Does it push to main?**
-Never. It switches to a feature branch first, and the installed hooks block a direct push to main if one slips through.
+**Does the shortcut install hooks or merge the PR?**
+
+No. It preserves existing checks and leaves PR merging to you unless you explicitly request otherwise.
 
 ## It's working if
 
-- You are on a feature branch, or were moved onto one before anything else.
-- The commit subject starts with a capital, stays short, and carries no attribution trailers.
-- A PR exists after the first push, and nothing was merged.
+- The commit contains the intended changes.
+- The branch and PR are reported, or the narrower endpoint you requested is honoured.
 
 ## Where it fits
 
-`commit` is the user-invoked front door to [committing-changes](https://aihero.dev/skills-committing-changes), which owns the branch, hook, message, and PR rules it follows. It sits at the tail of any build: after the tickets are built, after [code-review](https://aihero.dev/skills-code-review) passes.
+This is the explicit shortcut for committing-changes. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.

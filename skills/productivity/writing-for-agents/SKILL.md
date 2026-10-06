@@ -3,11 +3,13 @@ name: writing-for-agents
 description: Writing documents for agents. Use when creating or editing skills, or modifying AGENTS.md or CLAUDE.md.
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 Reference for writing any document an agent consumes: a skill, an `AGENTS.md` / `CLAUDE.md`, a doc reached by a pointer. The packaging differs; the writing does not: the same levers make each one predictable, since the agent takes the same _process_ every run rather than producing the same output.
 
 When the document you're writing is a skill, read [`SKILL-MECHANICS.md`](SKILL-MECHANICS.md) for frontmatter, invocation choice, and router skills.
 
-Use `writing-for-agents` for agent-facing instructions, metadata, and progressive disclosure. Ask the user to run `/technical-writing` for human-facing documentation. After editing prose, call the Skill tool with "unslop".
+Use `writing-for-agents` for agent-facing instructions, metadata, and progressive disclosure. For human-facing documentation, use existing authoring guidance directly; suggest `technical-writing` when a separate dedicated writing workflow would help. After editing prose, read and follow [unslop](../unslop/SKILL.md).
 
 ## Context pointers
 

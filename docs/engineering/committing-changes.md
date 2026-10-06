@@ -1,34 +1,31 @@
 ## What it does
 
-`committing-changes` lands work the boring way: feature branch, hooks, lint and format, one logical change per commit, push, PR. It ships the hook scripts and the PR-size gate that enforce the rules, so discipline is installed, not remembered.
-
-Its defining constraint is that the human keeps every irreversible decision. The agent never pushes to main, never force-pushes, and never merges; it opens the PR and stops.
+Commits intended changes and completes the requested delivery endpoint. Routine commits preserve existing hooks, CI, and repository configuration; installing new checks is a separate setup task.
 
 ## When to reach for it
 
-Type `/committing-changes`, or the agent reaches for it automatically when a task fits: it is model-invoked, and fires whenever work is ready to land. The [commit](https://aihero.dev/skills-commit) skill is its user-invoked front door.
-
-| Your situation | Reach for |
-| --- | --- |
-| Finished work needs landing | `committing-changes` |
-| The repo has no hooks installed yet | Step one of this skill installs them |
-| The diff needs a verdict before landing | [review](https://aihero.dev/skills-review) or [code-review](https://aihero.dev/skills-code-review) first |
-
-## Hooks, not memory
-
-The `commit-msg` hook enforces the subject rules (capital start, short, no trailing period, no attribution trailers) and the `pre-push` hook blocks direct pushes to main. The optional PR-size workflow fails PRs over a thousand changed lines. Run the installers once per repo; from then on the rules hold without anyone reciting them.
+Ask to commit, push, or open a PR, or explicitly invoke `$committing-changes` in Codex or `/committing-changes` in Claude Code. A local-commit request ends with a local commit; PR delivery includes publishing the feature branch.
 
 ## Common questions
 
-**Why one logical change per commit?**
-Bisect and revert. A commit that does one thing can be blamed, bisected, and reverted surgically; a bundled one can do none of those.
+**Will it replace my hooks?**
+
+No. It uses existing checks and investigates failures. Optional hook or CI installation belongs to an explicit repository-setup request.
+
+**Can it sync the default branch without merging my PR?**
+
+Yes. Integrating the default branch into a feature branch follows repository policy. Merging the feature branch into the default branch or merging its PR is a separate action controlled by the user.
+
+**Is every PR limited to 1000 lines?**
+
+Only when the repository configures that gate. The skill no longer installs a universal size policy.
 
 ## It's working if
 
-- The branch name carries its type prefix, and main was never pushed to directly.
-- Each commit message reads as one imperative sentence.
-- Oversized PRs fail in CI before a human ever sees them.
+- Only intended files appear in the commit.
+- Existing hooks and CI remain intact.
+- The result reports the requested commit or PR and the checks actually completed.
 
 ## Where it fits
 
-`committing-changes` closes every build by landing the implementation on a feature branch and opening a reviewable PR. Its closest neighbour is [shell-discipline](https://aihero.dev/skills-shell-discipline): one auditable tool call per git command, no chains.
+The commit shortcut requests this delivery workflow. setup-matt-pocock-skills handles explicitly requested repository configuration. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.

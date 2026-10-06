@@ -1,75 +1,25 @@
 ---
 name: to-spec
-description: "Turn the current conversation into a spec and publish it to the project issue tracker: no interview, just synthesis of what you've already discussed."
+description: Synthesize the current conversation into a proportionate spec and publish it to the configured tracker when requested.
 disable-model-invocation: true
 ---
 
-This skill takes the current conversation context and codebase understanding and produces a spec. Do NOT interview the user; just synthesize what you already know.
+# To spec
 
-The issue tracker and label vocabulary should have been provided to you. If the tracker is not configured for this repo, ask the user where to publish the spec.
+Read [working guidance](../../shared/working-guidance.md) once for this task. Synthesize the agreed outcome from the conversation and relevant code. Do not start a new interview or reopen settled decisions.
 
-## Process
+Read relevant project vocabulary, contracts, and ADRs. Distinguish agreed requirements from assumptions and unresolved decisions. Prefer existing verification seams. Ask only when a missing decision materially changes the promised behaviour, scope, compatibility, or acceptance criteria; do not pause merely to obtain approval of a routine test seam.
 
-1. Explore the repo to understand the current state of the codebase, if you haven't already. Use the project's domain glossary vocabulary throughout the spec, and respect any ADRs in the area you're touching.
+Write the shortest spec that makes the work implementable and verifiable:
 
-2. Sketch out the seams at which you're going to test the feature. Existing seams should be preferred to new ones. Use the highest seam possible. If new seams are needed, propose them at the highest point you can. The fewer seams across the codebase, the better - the ideal number is one.
+- The user's problem and the intended observable behaviour.
+- Acceptance criteria covering the actual requirements and relevant failure cases. Use user stories when helpful; no minimum count or exhaustive template is required.
+- Consequential implementation decisions and contracts already agreed.
+- Verification that could detect unmet requirements, including relevant existing checks.
+- Out-of-scope work and any unresolved consequential decisions.
 
-Check with the user that these seams match their expectations.
+Keep implementation detail only when it records a decision or helps locate the work. A precise state model, schema, contract, or current source path can be useful; distinguish it from a requirement that must remain true after code moves.
 
-3. Write the spec using the template below, then publish it to the project issue tracker. Apply the `ready-for-agent` label.
+Honour the requested destination. Invoking this workflow normally includes publishing to an already configured project tracker, unless the user requests a draft or local document. If no destination is established, prepare the complete spec first and ask where to publish while preserving the draft. Use the tracker's workflow and label vocabulary. Apply a readiness label only when no unresolved decision blocks implementation.
 
-<spec-template>
-
-## Problem Statement
-
-The problem that the user is facing, from the user's perspective.
-
-## Solution
-
-The solution to the problem, from the user's perspective.
-
-## User Stories
-
-A LONG, numbered list of user stories. Each user story should be in the format of:
-
-1. As an <actor>, I want a <feature>, so that <benefit>
-
-<user-story-example>
-1. As a mobile bank customer, I want to see balance on my accounts, so that I can make better informed decisions about my spending
-</user-story-example>
-
-This list of user stories should be extremely extensive and cover all aspects of the feature.
-
-## Implementation Decisions
-
-A list of implementation decisions that were made. This can include:
-
-- The modules that will be built/modified
-- The interfaces of those modules that will be modified
-- Technical clarifications from the developer
-- Architectural decisions
-- Schema changes
-- API contracts
-- Specific interactions
-
-Do NOT include specific file paths or code snippets. They may end up being outdated very quickly.
-
-Exception: if a prototype produced a snippet that encodes a decision more precisely than prose can (state machine, reducer, schema, type shape), inline it within the relevant decision and note briefly that it came from a prototype. Trim to the decision-rich parts, not a working demo, just the important bits.
-
-## Testing Decisions
-
-A list of testing decisions that were made. Include:
-
-- A description of what makes a good test (only test external behavior, not implementation details)
-- Which modules will be tested
-- Prior art for the tests (i.e. similar types of tests in the codebase)
-
-## Out of Scope
-
-A description of the things that are out of scope for this spec.
-
-## Further Notes
-
-Any further notes about the feature.
-
-</spec-template>
+Report the spec location and any remaining decision. Creating the spec does not itself authorize implementation.

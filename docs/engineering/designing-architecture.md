@@ -1,34 +1,27 @@
 ## What it does
 
-`designing-architecture` produces a pre-implementation architecture plan: requirements, evaluated technology candidates with rejected alternatives, patterns, components and data flow, and a TDD-ready step list that hands directly to implementation.
-
-Its defining constraint is minimum viable architecture. Every library is researched before it is recommended, every pattern earns its place against the current feature, and speculative configurability is rejected on sight.
+Designs the interfaces, data flow, and operational decisions a change needs. The depth follows uncertainty and impact: a small change can receive a short plan, while a migration may need a durable design.
 
 ## When to reach for it
 
-Type `/designing-architecture`, or the agent reaches for it automatically when a task fits: it is model-invoked, and fires on open architecture questions. The [design](https://aihero.dev/skills-design) skill is its user-invoked front door.
-
-| Your situation | Reach for |
-| --- | --- |
-| Libraries, patterns, and components are undecided | `designing-architecture` |
-| The plan is settled and needs stress-testing | [grill-with-docs](https://aihero.dev/skills-grill-with-docs) |
-| One question needs a runnable answer, not a document | [prototype](https://aihero.dev/skills-prototype) |
-
-## Research before recommending
-
-No library enters the plan unchecked: activity, docs, license, dependency footprint, and at least one alternative, verified against official docs rather than star counts. The output is a single Markdown document whose step list is sized for red-green-refactor cycles, so the plan feeds implementation without translation.
+Ask for architecture or a consequential design decision, or invoke `$designing-architecture` in Codex or `/designing-architecture` in Claude Code. Use the design shortcut when you want a design-only result.
 
 ## Common questions
 
-**What if the design includes a data layer?**
-A database overlay runs as a mini-pipeline inside the same skill: technology family via CAP framing, schema from conceptual to physical, indexing strategy, zero-downtime migration plan, and security. It lands in the same document, not a second one.
+**Will it survey libraries for every feature?**
+
+No. It starts with the existing project and researches alternatives when a dependency decision is actually open.
+
+**Does it stop after designing?**
+
+A design-only request ends with the plan. When design is part of an authorized implementation task, work continues once consequential decisions are settled.
 
 ## It's working if
 
-- Rejected alternatives are listed with reasons, not silently dropped.
-- Each implementation step is independently testable and dependency-ordered.
-- Open questions are explicit; nothing load-bearing was decided quietly.
+- The design names the interfaces and contracts that change.
+- Tradeoffs and verification match the actual requirement.
+- Unresolved consequential choices are visible.
 
 ## Where it fits
 
-`designing-architecture` sits ahead of the build: its step list feeds implementation, and [code-review](https://aihero.dev/skills-code-review) later checks the result against the requirements and repository standards. Its closest neighbours are [engineering-philosophy](https://aihero.dev/skills-engineering-philosophy), whose KISS and YAGNI weights dominate during design, and [grill-with-docs](https://aihero.dev/skills-grill-with-docs), which settles the decisions this skill records.
+It prepares work for implementation and subsequent code-review. Shared working guidance supplies engineering defaults. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.

@@ -4,6 +4,8 @@ description: Keep a reviewable decision trail for long-running or unattended wor
 disable-model-invocation: true
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # Show me your work
 
 For work a human reviews after the fact, a decision trail lets them reconstruct what was decided, why, and on what evidence, without rerunning the work or reading the whole transcript. Keep one canonical log so the trail is consistent and a future agent can find it.
@@ -33,7 +35,7 @@ ts	phase	decision	why	evidence	result
 
 ## Logging a row
 
-Write each entry the way you'd tell a teammate what you did. Plain words, concrete actions, and no abstract jargon. Before handing back a committed trail, call the Skill tool with "unslop" on the log text. A reviewer should understand each row without decoding it.
+Write each entry the way you'd tell a teammate what you did. Plain words, concrete actions, and no abstract jargon. Before handing back a committed trail, read and follow [unslop](../../productivity/unslop/SKILL.md) on the log text. A reviewer should understand each row without decoding it.
 
 Use the helper so rows stay well-formed: `scripts/log.sh <logfile> <phase> <decision> <why> <evidence> <result>`. It stamps `ts`, writes the header on first use, strips stray tabs/newlines, and prefixes any cell starting with `=`, `+`, `-`, or `@` with a single quote so a reviewer opening the log in a spreadsheet doesn't trigger formula execution. A bare `printf` appending a row works too, but mind those same bytes if cells come from generated or user-supplied text.
 

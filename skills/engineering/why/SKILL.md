@@ -4,6 +4,8 @@ description: Investigate why code looks the way it does, with cited evidence and
 disable-model-invocation: true
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # Why
 
 Investigate the motivation and intent behind code.

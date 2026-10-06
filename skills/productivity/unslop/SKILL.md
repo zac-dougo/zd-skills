@@ -3,6 +3,8 @@ name: unslop
 description: Cut AI tells from any writing. Must always apply.
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # Unslop
 
 Edit text to remove AI patterns and add human voice.

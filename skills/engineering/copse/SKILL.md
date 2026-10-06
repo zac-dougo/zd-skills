@@ -3,6 +3,8 @@ name: copse
 description: Use when configuring or operating the Matt Pocock engineering skills with Copse as the local issue tracker. Defines Copse issue files, links, statuses, labels, and the limits of its read-only board.
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # Copse
 
 Use Copse as the local issue tracker when a repository has a `.copse/` directory and the user wants the engineering skills to publish issues there.

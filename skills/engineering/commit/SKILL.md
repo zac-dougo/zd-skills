@@ -1,17 +1,13 @@
 ---
 name: commit
-description: Commit the staged work on a feature branch and open a PR.
+description: Commit intended work on a feature branch and open or update its PR.
 disable-model-invocation: true
 ---
 
+Read [working guidance](../../shared/working-guidance.md) once for this task.
+
 # Commit
 
-Call the Skill tool with `committing-changes`. If arguments are passed, treat them as the intended commit message or scope hint; otherwise let the skill infer the message from the staged diff.
+Read and follow [committing-changes](../committing-changes/SKILL.md). Arguments provide the intended commit message or scope. Invoking this shortcut requests the branch, commit, push, and PR workflow unless the user narrows it, for example to a local commit only.
 
-The skill is the single source of truth for:
-
-- Commit-message rules (capital start, 72 chars or less, no trailing period, no attribution trailers, one logical change per commit).
-- Branch protection (never push to main, never force-push, never merge a PR on the user's behalf).
-- Hook installation (commit-msg + pre-commit + pre-push) and the optional PR-size CI gate.
-
-Echo any state-changing `git` or `gh` command back to the user before running it.
+The underlying skill owns message conventions, existing checks, branch handling, and delivery. Give a concise update before publishing; do not require the user to approve commands already authorized by their request.
