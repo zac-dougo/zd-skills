@@ -9,6 +9,8 @@ Read [working guidance](../../shared/working-guidance.md) once for this task.
 
 Write a handoff document summarising the current conversation so a fresh agent can continue the work. Save to the temporary directory of the user's OS - not the current workspace.
 
+Include the current objective, settled decisions, completed and outstanding work, blockers or pending user input, checks actually run, and remaining verification gaps. Give the next agent a concrete starting point and identify relevant local changes that must be preserved.
+
 Include a "suggested skills" section in the document, linking the relevant skills' `SKILL.md` files and explaining when the next agent should read and follow them.
 
 Do not duplicate content already captured in other artifacts (specs, plans, ADRs, issues, commits, diffs). Reference them by path or URL instead.

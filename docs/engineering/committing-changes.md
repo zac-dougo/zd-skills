@@ -28,4 +28,4 @@ Only when the repository configures that gate. The skill no longer installs a un
 
 ## Where it fits
 
-The commit shortcut requests this delivery workflow. setup-matt-pocock-skills handles explicitly requested repository configuration. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.
+Use this workflow directly for commits and PR delivery. Configure repository hooks or CI only when explicitly requested. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.

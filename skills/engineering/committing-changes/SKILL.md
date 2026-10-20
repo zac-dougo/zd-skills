@@ -25,6 +25,6 @@ Sync with the default branch only when needed for conflicts, required checks, or
 
 ## Repository setup is separate
 
-Routine commits do not install hooks, add workflows, change `.gitattributes`, or delete branches. Use [setup-matt-pocock-skills](../setup-matt-pocock-skills/SKILL.md) when the user explicitly requests repository setup. Its optional Git checks refer to [repository setup](reference/repository-setup.md).
+Routine commits do not install hooks, add workflows, change `.gitattributes`, or delete branches. Configure hooks or CI only when the user explicitly requests repository setup, following [repository setup](reference/repository-setup.md).
 
 There is no universal PR line limit. Follow a configured limit; otherwise split changes when it improves independent review and verification.

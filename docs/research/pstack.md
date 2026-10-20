@@ -1,6 +1,8 @@
 # pstack skills
 
-Source: [Cursor plugins, `pstack`](https://github.com/cursor/plugins/tree/main/pstack), inspected from the repository's current `main` branch.
+Source: [Cursor plugins, `pstack`](https://github.com/cursor/plugins/tree/main/pstack), inspected during the original comparison.
+
+This historical research predates the collection's pruning. References to this repository's skills describe that earlier snapshot; use the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for the current inventory.
 
 ## What pstack is
 

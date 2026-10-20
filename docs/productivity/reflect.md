@@ -24,4 +24,4 @@ No. There is no fixed agent count or model requirement. Any returned finding mus
 
 ## Where it fits
 
-automate-me captures durable working preferences. writing-for-agents guides edits to the actual instruction files. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.
+Durable working preferences belong in [shared working guidance](https://github.com/zac-dougo/zd-skills/blob/main/skills/shared/working-guidance.md). [writing-for-agents](https://aihero.dev/skills-writing-for-agents) guides edits to the actual instruction files. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.

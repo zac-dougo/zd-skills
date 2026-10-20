@@ -1,6 +1,6 @@
 ---
 name: blast-radius
-description: Find what a change could break beyond its diff and prove the central safety fact.
+description: Find what a change could break beyond its diff and check the conditions its safety depends on.
 disable-model-invocation: true
 ---
 
@@ -8,44 +8,36 @@ Read [working guidance](../../shared/working-guidance.md) once for this task.
 
 # Blast radius
 
-Find what a change breaks somewhere else, before it ships. Use for "blast radius of X", "what could this break", or reviewing a small diff you don't trust yet.
+Find consequential breakage outside the changed lines. Use for "what could this break", hidden consumers, or a small diff whose downstream effects are unclear.
 
-Before tracing the change, read and follow [codebase-design](../codebase-design/SKILL.md) when module shape is unclear. Read and follow [domain-modeling](../domain-modeling/SKILL.md) when terminology or domain behavior is unclear. `blast-radius` then checks what the change breaks somewhere else.
+Read affected interfaces and callers to understand the change. Consult project vocabulary and decisions when relevant. Read and follow [domain-modeling](../domain-modeling/SKILL.md) only when the task calls for developing the model, rather than merely consuming its terminology.
 
-Listing the callers is not the job. The agent can grep those in a second. The job is the breakage grep won't show you.
+## Trace the actual change
 
-## Don't trust your own writeup
+Establish the requested diff and intent. Identify changed behavior, contracts, and assumptions, including behavior omitted from the diff. Follow hidden consumers where relevant: serialized data, database readers, feature flags, library versions and patches, teardown timing, and downstream systems.
 
-A blast-radius writeup that sounds right is worthless. It reads as convincing whether or not it's true, and that is the trap you are walking into. So don't hand back the writeup. Find the one or two facts the whole thing depends on and prove them by running code. Words are where you start, not what you ship.
+Prioritize concrete exposure and consequences. Do not invent callers or assign numerical probabilities without evidence. A negative search narrows what was found; it does not prove no consumer exists outside the search scope.
 
-### How sure are you
+## Check the safety conditions
 
-For each fact the change's safety depends on, get it as far down this list as is cheap, and say where it stopped.
+Identify the conditions the change depends on. There may be one or several independent conditions; keep each material condition visible instead of forcing all risks into one explanation.
 
-1. You said so. Worthless on its own.
-2. You pointed at the line. A real `file:line`, or the library's own source.
-3. You showed the bad case can't happen. You walked the failure step by step and it doesn't reach.
-4. You ran it. A script or test that calls the real code and fails loud if you're wrong.
-5. You reproduced it in the running app.
+For each condition, use evidence suited to the claim:
 
-Any safety fact you can't get to step 4, say so out loud. Don't write it up as settled. Step 4 is usually one small script that imports the same library the app ships and calls the exact function you're worried about.
+- Source references and contract analysis for behavior that can be established from code or a specification.
+- Type checks, existing tests, or a focused regression check for executable behavior.
+- An integration exercise or running-app reproduction when timing, external state, or interactions matter.
 
-## Steps
+Prefer the least costly check that could distinguish the claimed safe behavior from the failure. Write a temporary script or test when it adds evidence the existing checks cannot provide. Running code is useful evidence for the cases exercised, not universal proof of safety.
 
-1. Read the change. The diff, the symbols it adds, changes, and deletes, and what it now does differently, including the part the diff doesn't spell out. Pull the PR and commits when they are the primary source for the change's intent.
-2. Find the one fact it's safe because of. Most changes that look scary are safe because of a single fact, like "this call only drops already-dead cache entries and does nothing else". Find that fact. If it holds, most of the scary cases die at once. Spend your time here, not on a long list of maybes.
-3. Look where grep stops. Read the source of the library you call, and check its pinned version and any local patch. Work out when things run: microtasks, unmount and teardown, Solid versus React. Follow what a symbol search misses: the JSON an API returns, a DB column, a wire format, another language reading the same bytes, a feature flag, code three hops downstream.
-4. Be honest about each risk. Give it a real chance of happening and a real cost if it does. Keep the risks you confirmed; list the ones you checked and cleared separately. Cite a real `file:line`. A search that finds nothing is still an answer. Never make up a caller or an interface.
-5. Prove the one fact. Write a script or test that runs the real code, run it, and paste what happened. If you can't prove it cheaply, mark it unproven. Don't round up.
+State what was observed, what follows from source analysis, and what remains uncertain. Mark a condition as supported, contradicted, or unverified with its evidence and limits. Do not call the whole change safe merely because one condition held or one example passed.
 
-## What to hand back
+## Report the result
 
-- **What it does.** What changed, including the part that isn't obvious.
-- **The one fact it's safe because of.** State it, say which step you got it to, and show the proof. If you couldn't prove it, write unproven.
-- **Risks.** Only the real ones. Each names how it breaks, the `file:line`, how likely and how bad, and how to check. Paste the proof for the ones that matter.
-- **Cleared.** What you checked and why it's fine.
-- **Before you merge.** The cheapest test or repro that catches the real bug, including the script you wrote.
+- **Changed behavior.** What changes and which consumers may be affected.
+- **Safety conditions.** Each material condition, its status, evidence, and remaining limitations.
+- **Risks.** The trigger, consequence, affected code or contract, and a useful check. Separate confirmed defects from consequential uncertainty.
+- **Cleared concerns.** What was investigated and why the available evidence addresses it.
+- **Remaining checks.** The smallest unresolved verification step, if any.
 
-Write it through `unslop`, cite real code, and strip anything private before it goes anywhere public.
-
-**Reply:** the writeup above, with the one safety fact either proven or marked unproven.
+Keep the report proportionate. Use real source locations, follow [unslop](../../productivity/unslop/SKILL.md) for prose, and redact private material before public sharing. This investigation does not itself authorize a merge or publication.
