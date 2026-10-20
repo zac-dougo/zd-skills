@@ -28,4 +28,4 @@ It prepares the complete draft and asks where to publish. It does not guess a de
 
 ## Where it fits
 
-to-tickets can split the spec into deliverable work. code-review checks the implementation against the agreed requirements. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.
+[grilling](https://aihero.dev/skills-grilling) resolves consequential questions before the spec. [code-review](https://aihero.dev/skills-code-review) checks the implementation against the agreed requirements. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.

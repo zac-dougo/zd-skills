@@ -9,7 +9,13 @@ Read this once when using this collection. Apply the sections relevant to the ta
 - Scale planning, research, documentation, and testing to the uncertainty and impact of the task. A small fix can need only a focused check; an uncertain migration can need a plan and checkpoints.
 - Lead updates with the result or decision. Use plain language, concise paragraphs, and tables when comparison helps. Report what changed, the evidence checked, and any remaining limitation.
 - Treat a proposal as a proposal. Edit, publish, deploy, or send messages only within the user's authorized scope. Preparing a reviewable result does not itself authorize an external action.
-- Delegate only when allowed and a bounded independent task benefits from it. Pass the required context, constrain side effects, and verify returned findings. Avoid fixed agent counts or model choices for routine work.
+
+## Delegation
+
+- As the coordinator, proactively delegate bounded, independent work when parallel execution or a separate context is likely to improve the result or reduce total completion time. Keep small tasks and tightly dependent steps inline when coordination would cost more than it saves.
+- Prefer GPT-6 Luna (`gpt-6-luna`) for focused searches, primary-source lookups, mechanical edits, well-specified implementation, and targeted checks. Explicitly choose an available Sol or Astra model when ambiguity, architectural tradeoffs, consequential risks, or failed lighter-model attempts warrant stronger reasoning. Use a supported alternative when the preferred model is unavailable, and report the substitution.
+- Give each agent the context it needs, a clear outcome, owned files or read-only boundaries, and expected evidence. Avoid concurrent edits to the same files or shared mutable resources. Keep concurrency within the runtime's limits and integrate useful results as they arrive.
+- Subagents complete their assigned work directly unless the coordinator explicitly requests further delegation. The coordinator remains responsible for checking evidence, reconciling changes, and completing the user's request. Do not substitute agent summaries for verification of consequential claims.
 
 ## Engineering
 

@@ -24,4 +24,4 @@ Yes. Explicitly request exhaustive grilling and it explores the relevant decisio
 
 ## Where it fits
 
-grill-me provides a discussion-only shortcut. grill-with-docs also records settled project terminology and decisions. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.
+Use this workflow directly to examine assumptions. Pair it with [domain-modeling](https://aihero.dev/skills-domain-modeling) when settled terminology and consequential decisions should also be recorded in project docs. See the [collection guide](https://github.com/zac-dougo/zd-skills/blob/main/README.md) for related workflows.
